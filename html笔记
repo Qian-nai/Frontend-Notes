@@ -1,0 +1,173 @@
+问：网页的head标签里面，表示的是页面的配置，有什么配置？
+答：字符集、关键词、页面描述、页面标题、IE适配、视口、iPhone小图标等等。
+
+头标签内部的常见标签如下：
+    <title>：指定整个网页的标题，在浏览器最上方显示。
+    <base>：为页面上的所有链接规定默认地址或默认目标。
+    <meta>：提供有关页面的基本信息
+    <body>：用于定义HTML文档所要显示的内容，也称为主体标签。我们所写的代码必须放在此标签內。
+    <link>：定义文档与外部资源的关系。
+
+<body>标签的属性有：
+    bgcolor：设置整个网页的背景颜色。
+    background：设置整个网页的背景图片。
+    text：设置网页中的文本颜色。
+    leftmargin：网页的左边距。IE浏览器默认是8个像素。
+    topmargin：网页的上边距。
+    rightmargin：网页的右边距。
+    bottommargin：网页的下边距。
+
+中文使用的字符集:
+    UTF-8：字多，有各种国家的语言，但是保存尺寸大，文件臃肿；
+    gb2312：字少，只用中文和少数外语和符号，但是尺寸小，文件小巧。
+
+HTML标签是分等级的，HTML将所有的标签分为两种：
+    文本级标签：p、span、a、b、i、u、em。文本级标签里只能放文字、图片、表单元素。（a标签里不能放a和input）
+    容器级标签：div、h系列、li、dt、dd。容器级标签里可以放置任何东西。
+
+div和span的区别
+    <span>和<div>唯一的区别在于：<span>是不换行的，而<div>是换行的。
+    如果单独在网页中插入这两个元素，不会对页面产生任何的影响。这两个元素是专门为定义CSS样式而生的。或者说，DIV+CSS来实现各种样式。
+    div在浏览器中，默认是不会增加任何的效果的，但是语义变了，div中的所有元素是一个小区域。 div标签是一个容器级标签，里面什么都能放，甚至可以放div自己。
+    span也是表达“小区域、小跨度”的标签，但只是一个文本级的标签。 就是说，span里面只能放置文字、图片、表单元素。 span里面不能放p、h、ul、dl、ol、div。
+
+特殊字符（转义字符）
+    &nbsp;：空格 （non-breaking spacing，不断打空格）
+    &lt;：小于号<（less than）
+    &gt;：大于号>（greater than）
+
+超链接的属性
+    href：目标URL
+    title：悬停文本。
+    name：主要用于设置一个锚点的名称。
+    target：告诉浏览器用什么方式来打开目标页面。target属性有以下几个值：
+    _self：在同一个网页中显示（默认值）
+    _blank：在新的窗口中打开。
+    _parent：在父窗口中显示
+    _top：在顶级窗口中显示
+
+表单标签用<form>表示，用于与服务器的交互。表单就是收集用户信息的，就是让用户填写的、选择的。
+    属性：
+        name：表单的名称，用于JS来操作或控制表单时使用；
+        id：表单的名称，用于JS来操作或控制表单时使用；
+        action：指定表单数据的处理程序，一般是PHP，如：action=“login.php”
+        method：表单数据的提交方式，一般取值：get(默认)和post
+        注意：表单和表格嵌套时，是在<form>标记中套<table>标记。
+
+get提交和post提交的区别：
+    GET方式： 将表单数据，以"name=value"形式追加到action指定的处理程序的后面，两者间用"?"隔开，每一个表单的"name=value"间用"&"号隔开。 特点：只适合提交少量信息，并且不太安全(不要提交敏感数据)、提交的数据类型只限于ASCII字符。
+    POST方式： 将表单数据直接发送(隐藏)到action指定的处理程序。POST发送的数据不可见。Action指定的处理程序可以获取到表单数据。 特点：可以提交海量信息，相对来说安全一些，提交的数据格式是多样的(Word、Excel、rar、img)。
+    Enctype： 表单数据的编码方式(加密方式)，取值可以是：application/x-www-form-urlencoded、multipart/form-data。Enctype只能在POST方式下使用。
+    Application/x-www-form-urlencoded：默认加密方式，除了上传文件之外的数据都可以
+    Multipart/form-data：上传附件时，必须使用这种编码方式。
+
+input:
+    type="属性值"：文本类型。属性值可以是：
+        text（默认）
+        password：密码类型
+        radio：单选按钮，名字相同的按钮作为一组进行单选（单选按钮，天生是不能互斥的，如果想互斥，必须要有相同的name属性。name就是“名字”。 ）。非常像以前的收音机，按下去一个按钮，其他的就抬起来了。所以叫做radio。
+        checkbox：多选按钮，name 属性值相同的按钮作为一组进行选择。
+        checked：将单选按钮或多选按钮默认处于选中状态。当<input>标签设置为type="radio"或者type=checkbox时，可以用这个属性。属性值也是checked，可以省略。
+        hidden：隐藏框，在表单中包含不希望用户看见的信息
+        button：普通按钮，结合js代码进行使用。
+        submit：提交按钮，传送当前表单的数据给服务器或其他程序处理。这个按钮不需要写value自动就会有“提交”文字。这个按钮真的有提交功能。点击按钮后，这个表单就会被提交到form标签的action属性中指定的那个页面中去。
+        reset：重置按钮，清空当前表单的内容，并设置为最初的默认值
+        image：图片按钮，和提交按钮的功能完全一致，只不过图片按钮可以显示图片。
+        file：文件选择框。 提示：如果要限制上传文件的类型，需要配合JS来实现验证。对上传文件的安全检查：一是扩展名的检查，二是文件数据内容的检查。
+        value="内容"：文本框里的默认内容（已经被填好了的）
+        size="50"：表示文本框内可以显示五十个字符。一个英文或一个中文都算一个字符。 注意size属性值的单位不是像素哦。
+        readonly：文本框只读，不能编辑。因为它的属性值也是readonly，所以属性值可以不写。 用了这个属性之后，在google浏览器中，光标点不进去；在IE浏览器中，光标可以点进去，但是文字不能编辑。
+        disabled：文本框只读，不能编辑，光标点不进去。属性值可以不写。
+
+H5中新增的语义标签
+    <section> 表示区块
+    <article> 表示文章。如文章、评论、帖子、博客
+    <header> 表示页眉
+    <footer> 表示页脚
+    <nav> 表示导航
+    <aside> 表示侧边栏。如文章的侧栏
+    <figure> 表示媒介内容分组。
+    <mark> 表示标记 (用得少)
+    <progress> 表示进度 (用得少)
+    <time> 表示日期
+    本质上新语义标签与<div>、<span>没有区别，只是其具有表意性，使用时除了在HTML结构上需要注意外，其它和普通标签的使用无任何差别，可以理解成<div class="nav"> 相当于<nav>。
+H5中新增的表单类型
+    email 只能输入email格式。自动带有验证功能。
+    tel 手机号码。
+    url 只能输入url格式。
+    number 只能输入数字。
+    search 搜索框
+    range 滑动条
+    color 拾色器
+    time 时间
+    date 日期
+    datetime 时间日期
+    month 月份
+    week 星期
+表单属性
+    placeholder 占位符（提示文字）
+    autofocus 自动获取焦点
+    multiple 文件上传多选或多个邮箱地址
+    autocomplete 自动完成（填充的）。on 开启（默认），off 取消。用于表单元素，也可用于表单自身(on/off)
+    form 指定表单项属于哪个form，处理复杂表单时会需要
+    novalidate 关闭默认的验证功能（只能加给form）
+    required 表示必填项
+    pattern 自定义正则，验证表单
+表单事件
+    oninput()：用户输入内容时触发，可用于输入字数统计。
+    oninvalid()：验证不通过时触发。比如，如果验证不通过时，想弹出一段提示文字，就可以用到它。
+
+html 元素（body 区域）
+    body 区域的 html 元素，会直接出现在页面上。
+    div、section、article、aside、header、footer
+    p
+    span、em、strong
+    表格元素：table、thead、tbody、tr、td
+    列表元素：ul、ol、dl、dt、dd
+    a
+    表单元素：form、input、select、textarea、button
+    div 是最常见的元素，大多数场景下，都可以用div（实在不行就多包几层div）。可见，div 是比较通用的元素，这也决定了 div 的的语义并不是很明确。
+    常见标签的重要属性：
+    a[href,target]
+    img[src,alt]
+    table td[colspan,rowspan]。设置当前单元格占据几行几列。在合并单元格时，会用到。
+    form[action,method,enctype]
+    input[type,value]
+    button[type]
+    selection>option[value]
+    label[for]
+
+html 常见面试题
+    #doctype 的意义是什么
+    让浏览器以标准模式渲染
+    让浏览器知道元素的合法性
+    #HTML、XHTML、HTML5的区别
+    HTML 属于 SGML
+    XHTML 属于 XML，是 HTML 进行 XML 严格化的结果
+    HTML5 不属于SGML，也不属于 XML（HTML5有自己独立的一套规范），比 XHTML 宽松。
+    #HTML5 有什么新的变化
+    新的语义化元素
+    表单增强
+    新的API：离线、音视频、图形、实时通信、本地存储、设备能力等。
+    #em 和 i 的区别
+    共同点：二者都是表示斜体。
+    区别：
+    em 是语义化的标签，表示强调。
+    i 是纯样式的标签，表示斜体。HTML5 中不推荐使用。
+    #语义化的意义是什么
+    开发者容易理解，便于维护。
+    机器（搜索引擎、读屏软件等）容易理解结构
+    有助于 SEO
+    #哪些元素可以自闭合
+    自闭合的元素中不能再嵌入别的元素。且 HTML5 中要求加斜杠。
+    表单元素 input
+    图片 img
+    br、hr
+    meta、link
+    #form 表单的作用
+    直接提交表单
+    使用 submit / reset 按钮
+    便于浏览器保存表单
+    第三方库（比如 jQuery）可以整体获取值
+    第三方库可以进行表单验证
+    所以，如果我们是通过 Ajax 提交表单数据，也建议加上 form。

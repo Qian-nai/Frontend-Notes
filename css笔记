@@ -1,0 +1,53 @@
+字体属性:
+    font-size: 50px; 		/*字体大小*/
+	line-height: 30px;      /*行高*/
+	font-family: 幼圆,黑体; 	/*字体类型：如果没有幼圆就显示黑体，没有黑体就显示默认*/
+	font-style: italic ;		/*italic表示斜体，normal表示不倾斜*/
+	font-weight: bold/normal/数字;	/*粗细*/
+	font-variant: small-caps;  /*小写变大写*/
+    vertical-align: middle; /*指定行级元素的垂直对齐方式。*/
+    font:12px/30px  "Times New Roman","Microsoft YaHei","SimSun"; /*简写：字体大小/行高 字体类型*/
+
+文本属性:
+    letter-spacing: 0.5cm ; 单个字母之间的间距
+    word-spacing: 1cm; 单词之间的间距
+    text-decoration: none; 字体修饰：none 去掉下划线、underline 下划线、line-through 中划线、overline 上划线
+    color:red; 字体颜色
+    text-align: center; 在当前容器中的对齐方式。属性值可以是：left、right、center（在当前容器的中间）、justify
+    text-transform: lowercase; 单词的字体大小写。属性值可以是：uppercase（单词大写）、lowercase（单词小写）、capitalize（每个单词的首字母大写）
+
+列表属性:
+    list-style ;  /*列表样式*/
+    list-style-image:url(images/2.gif) ;  /*列表项前设置为图片*/
+    list-style-type:type ;  /*设置列表项标记的类型，如circle、square、decimal等*/
+    list-style-position:inside ;  /*列表项标记的位置。inside表示在文本内，outside表示在文本外*/
+
+overflow属性：超出范围的内容要怎么处理
+    overflow : visible ;  /*默认值，内容不会被修剪，会呈现在元素框之外*/
+    overflow : hidden ;   /*内容会被修剪，并且其余内容是不可见的*/
+    overflow : scroll ;   /*内容会被修剪，但是浏览器会显示滚动条以便查看其余内容*/
+    overflow : auto ;     /*如果内容被修剪，则浏览器会显示滚动条以便查看其余内容*/
+
+鼠标的属性cursor有以下几个属性值：
+    auto：默认值。浏览器根据当前情况自动确定鼠标光标类型。
+    pointer：IE6.0，竖起一只手指的手形光标。就像通常用户将光标移到超链接上时那样。
+    hand：和pointer的作用一样：竖起一只手指的手形光标。就像通常用户将光标移到超链接上时那样。
+
+滤镜:
+    <img src="3.jpg" style="filter:gray()">; /*灰度滤镜*/
+
+css2.1 中，常见的背景属性有以下几种：（经常用到，要记住）
+    background-color:#ff99ff; 设置元素的背景颜色。
+    background-image:url(images/2.gif); 将图像设置为背景。
+    background-repeat: no-repeat; 设置背景图片是否重复及如何重复，默认平铺满。（重要）
+    no-repeat不要平铺；
+    repeat-x横向平铺；
+    repeat-y纵向平铺。
+    background-position:center top; 设置背景图片在当前容器中的位置。
+    background-attachment:scroll; 设置背景图片是否跟着滚动条一起移动。 属性值可以是：scroll（与fixed属性相反，默认属性）、fixed（背景就会被固定住，不会被滚动条滚走）。
+    另外还有一个综合属性叫做background，它的作用是：将上面的多个属性写在一个声明中。
+CSS3 中，新增了一些background属性：
+    background-origin
+    background-clip 背景裁切
+    background-size 调整尺寸
+    多重背景

@@ -1,0 +1,195 @@
+<!-- html框架 -->
+<!-- HTML5的DTD（文档声明头） -->
+<!doctype html>
+<!-- 根标签,指定语言,zh-CN中文,en英文 -->
+<html lang="en">
+  <!-- 头部,必须设置title -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <!-- 主体,设置链接颜色 -->
+  <body link="red" alink="blue" vlink="green">
+    <h3>三级<br />标题强制换行</h3>
+    <a name="name1">顶部</a>
+    <br />
+    <audio controls loop autoplay draggable="true">
+      <source src="music/yinyue.mp3" />
+      <source src="music/yinyue.ogg" />
+      <source src="music/yinyue.wav" />
+      抱歉，你的浏览器暂不支持此音频格式
+    </audio>
+    <video controls autoplay>
+      <source src="video/movie.mp4" />
+      <source src="video/movie.ogg" />
+      <source src="video/movie.webm" />
+      抱歉，不支持此视频
+    </video>
+    <iframe
+      src="//player.bilibili.com/player.html?isOutside=true&aid=115989618431335&bvid=BV1qZ6yBXEVv&cid=35732718195&p=1"
+      scrolling="no"
+      border="0"
+      frameborder="no"
+      framespacing="0"
+      allowfullscreen="true"
+    ></iframe>
+    <br />
+    <img src="" alt="" />
+    <a href="https://www.jd.com" title="悬停文字" target="_blank"
+      >超链接,新建一个窗口</a
+    >
+    <hr align="center" color="black" />
+    分割线
+    <p align="center">This is a paragraph</p>
+    <u>下划线文本</u>
+    <s>删除线文本</s>
+    <i>斜体文本</i>
+    <em>强调文本</em>
+    <p>上标<sup>2</sup>下标<sub>2</sub></p>
+    <img
+      src="https://www.apple.com.cn/home/images/wechat/open_graph_logo.png"
+      alt="apple"
+      title="apple"
+      align="center"
+    />Apple
+
+    <form>
+      姓名：<input value="呵呵" /><br />
+      昵称：<input value="哈哈" readonly="" /><br />
+      名字：<input type="text" value="name" disabled="" /><br />
+      密码：<input type="password" value="pwd" size="50" /><br />
+      性别：<input
+        type="radio"
+        name="gender"
+        id="radio1"
+        value="male"
+        checked=""
+      />男
+      <input type="radio" name="gender" id="radio2" value="female" />女<br />
+      爱好：<input type="checkbox" name="love" value="eat" />吃饭
+      <input type="checkbox" name="love" value="sleep" />睡觉
+      <input type="checkbox" name="love" value="bat" />打豆豆
+    </form>
+
+    <form>
+      <input type="button" value="普通按钮" /><br />
+      <input type="submit" value="提交按钮" /><br />
+      <input type="reset" value="重置按钮" /><br />
+      <input type="file" value="文件选择框" />
+    </form>
+    <br />
+    <br />
+
+    <form>
+      <select>
+        <option>小学</option>
+        <option>初中</option>
+        <option>高中</option>
+        <option>大学</option>
+        <option selected="">研究生</option>
+      </select>
+      <br /><br /><br />
+
+      <select size="3">
+        <option>小学</option>
+        <option>初中</option>
+        <option>高中</option>
+        <option>大学</option>
+        <option>研究生</option>
+      </select>
+      <br /><br /><br />
+
+      <select multiple="">
+        <option>小学</option>
+        <option>初中</option>
+        <option selected="">高中</option>
+        <option selected="">大学</option>
+        <option>研究生</option>
+      </select>
+      <br /><br /><br />
+    </form>
+
+    <form>
+      <textarea name="txtInfo" rows="4" cols="20">
+1、不爱摄影不懂设计的程序猿不是一个好的产品经理。</textarea
+      >
+    </form>
+
+    <form>
+      <fieldset>
+        <legend>账号信息</legend>
+        姓名：<input value="呵呵" />逗比<br />
+        密码：<input type="password" value="pwd" size="50" /><br />
+      </fieldset>
+
+      <fieldset>
+        <legend>其他信息</legend>
+        性别：<input type="radio" name="gender" value="male" checked="" />男
+        <input type="radio" name="gender" value="female" />女<br />
+        爱好：<input type="checkbox" name="love" value="eat" />吃饭
+        <input type="checkbox" name="love" value="sleep" />睡觉
+        <input type="checkbox" name="love" value="bat" />打豆豆
+      </fieldset>
+    </form>
+
+    <input type="radio" name="sex" id="nan" /> <label for="nan">男</label>
+    <input type="radio" name="sex" id="nv" /> <label for="nv">女</label>
+    <br />
+
+    <input type="text" list="myData" />
+    <datalist id="myData">
+      <option>本科</option>
+      <option>研究生</option>
+      <option>不明</option>
+    </datalist>
+
+    <pre>
+        <ul>
+            <li>无序列表项</li>
+            <li>预格式化文本</li>
+        </ul>
+        <ol>
+            <li>有序列表项</li>
+            <li>预格式化文本</li>
+        </ol>
+        <dl>
+            <dt>定义列表标题</dt>
+            <dd>定义列表描述</dd>
+        </dl>
+        <table border="1" style="border-collapse: collapse;" align="center">
+            <caption>表格标题</caption>
+            <tr>
+                <td>tr行td格</td>
+                <td>预格式化文本</td>
+            </tr>
+            <tr>
+                <td>tr行td格</td>
+                <td>预格式化文本</td>
+            </tr>
+        </table>
+
+        <a href="https://www.apple.com.cn/" target="myframe">apple</a><br>
+        <a href="https://www.mi.com/index.html" target="myframe">xiaomi</a><br>
+        <a href="https://www.huawei.com/cn/" target="myframe">huawei</a><br>
+ 	    <iframe src="https://www.apple.com.cn/" width="400" height="400" name="myframe"></iframe>
+
+        
+        预格式化文本
+        预格式化文本
+        预格式化文本
+
+
+
+
+
+
+
+
+
+
+        预格式化文本
+    </pre>
+    <a href="#name1">返回顶部</a>
+  </body>
+</html>
