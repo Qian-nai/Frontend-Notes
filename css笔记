@@ -37,17 +37,113 @@ overflow属性：超出范围的内容要怎么处理
     <img src="3.jpg" style="filter:gray()">; /*灰度滤镜*/
 
 css2.1 中，常见的背景属性有以下几种：（经常用到，要记住）
-    background-color:#ff99ff; 设置元素的背景颜色。
+    background-color:#ff99ff/单词/rgb/rgba/hsla(色调,饱和度,亮度,透明度); 设置元素的背景颜色。
     background-image:url(images/2.gif); 将图像设置为背景。
     background-repeat: no-repeat; 设置背景图片是否重复及如何重复，默认平铺满。（重要）
-    no-repeat不要平铺；
-    repeat-x横向平铺；
-    repeat-y纵向平铺。
-    background-position:center top; 设置背景图片在当前容器中的位置。
+        no-repeat不要平铺；
+        repeat-x横向平铺；
+        repeat-y纵向平铺。
+    background-position:center top/100px 200px向右向下; 设置背景图片在当前容器中的位置。
     background-attachment:scroll; 设置背景图片是否跟着滚动条一起移动。 属性值可以是：scroll（与fixed属性相反，默认属性）、fixed（背景就会被固定住，不会被滚动条滚走）。
-    另外还有一个综合属性叫做background，它的作用是：将上面的多个属性写在一个声明中。
+    background: blue url(images/wuyifan.jpg) no-repeat 100px 100px; 将上面的多个属性写在一个声明中。
+
 CSS3 中，新增了一些background属性：
-    background-origin
-    background-clip 背景裁切
+    background-origin 控制背景从什么地方开始显示。
+        /* 从 padding-box 内边距开始显示背景图 */
+	    background-origin: padding-box;           //默认值
+        /* 从 border-box 边框开始显示背景图  */
+        background-origin: border-box;
+        /* 从 content-box 内容区域开始显示背景图  */
+        background-origin: content-box;
+    background-clip 设置元素的背景（背景图片或颜色）是否延伸到边框下面
+        background-clip: content-box; 超出的部分，将裁剪掉。属性值可以是：
+        border-box ;超出 border-box 的部分，将裁剪掉
+        padding-box ;超出 padding-box 的部分，将裁剪掉
+        content-box ;超出 content-box 的部分，将裁剪掉
     background-size 调整尺寸
+        /* 宽、高的具体数值 */
+        background-size: 500px 500px;
+        /* 宽高的百分比（相对于容器的大小） */
+        background-size: 50% 50%;   // 如果两个属性值相同，可以简写成：background-size: 50%;
+        background-size: 100% auto;  //这个属性可以自己试验一下。
+        /* cover：图片始终填充满容器，且保证长宽比不变。图片如果有超出部分，则超出部分会被隐藏。 */
+        background-size: cover;
+        /* contain：将图片完整地显示在容器中，且保证长宽比不变。可能会导致容器的部分区域为空白。  */
+        background-size: contain;
     多重背景
+        background: url(images/bg1.png) no-repeat left top,
+            url(images/bg2.png) no-repeat right top,
+            url(images/bg3.png) no-repeat right bottom,
+            url(images/bg4.png) no-repeat left bottom,
+            url(images/bg5.png) no-repeat center;
+
+颜色线性渐变
+    background-image: linear-gradient(方向, 起始颜色, 终止颜色);
+    background-image: linear-gradient(to right, yellow, green);
+颜色径向渐变
+    background-image: radial-gradient(辐射的半径大小, 中心的位置, 起始颜色, 终止颜色);
+	background-image: radial-gradient(100px at center,yellow ,green);
+
+clip-path：裁剪出元素的部分区域做展示
+    clip-path属性可以创建一个只有元素的部分区域可以显示的剪切区域。区域内的部分显示，区域外的隐藏。
+    虽然clip-path不是背景属性，但这个属性非常强大，但往往会结合背景属性一起使用，达到一些效果。
+    clip-path: circle(50% at 50% 50%);  /*圆形裁剪区域*/
+    clip-path: ellipse(50% 30% at 50% 50%);  /*椭圆形裁剪区域*/
+
+CSS 的书写方式有三种：
+
+    行内样式：在某个特定的标签里采用 style 属性。范围只针对此标签。
+    内嵌样式（内联样式）：在页面的 head 标签里里采用<style>标签。范围针对此页面。
+    外链样式：引入外部样式表 CSS 文件。这种引入方式又分为两种：
+        采用<link>标签。例如：<link rel = "stylesheet" type = "text/css" href = "a.css"></link>
+        采用 import 导入，必须写在<style>标签中。然后用类似于@import url(a.css) ;这种方式导入。
+            <link>标签的 rel 属性：。其属性值有以下两种：
+                stylesheet：定义的样式表
+                alternate stylesheet：候选的样式表
+
+CSS 的选择器
+    CSS 选择器：就是指定 CSS 要作用的标签，那个标签的名称就是选择器。意为：选择哪个容器。
+    CSS 的选择器分为两大类：基本选择器和扩展选择器。
+        基本选择器：
+            标签选择器：针对一类标签,直接写标签名称表示
+            ID 选择器：针对某一个特定的标签使用,用#加ID名称表示
+            类选择器：针对你想要的所有标签使用,用.加类名称表示,同一个标签可以使用多个类选择器。用空格隔开,class="teshu  zhongyao"
+            通用选择器（通配符）：针对所有的标签都适用（不建议使用）,用*表示
+        高级选择器：
+            后代选择器：用空格隔开,对于E F这种格式，表示所有属于 E 元素后代的 F 元素，有这个样式。空格就表示后代。
+                后代选择器，就是一种平衡：共性、特性的平衡。当要把某一个部分的所有的什么，进行样式改变，就要想到后代选择器。
+            交集选择器：选择器之间紧密相连
+                交集选择器：定义的时候紧密相连
+                 定义交集选择器的时候，两个选择器之间紧密相连。一般是以标签名开头，比如div.haha，再比如p.special。
+                如果后一个选择器是类选择器，则写为div.special；如果后一个选择器 id 选择器，则写为div#special。
+            并集选择器（分组选择器）：用逗号隔开,三种基本选择器都可以放进来。
+            伪类选择器
+
+选择器兼容性问题:
+    1.子代选择器，用符号>表示
+        IE7 开始兼容，IE6 不兼容。
+        div > p {
+            color: red;
+        }
+        div 的儿子 p。和 div 的后代 p 的截然不同。
+    2.序选择器
+        IE8 开始兼容；IE6、7 都不兼容
+        设置无序列表<ul>中的第一个<li>为红色：
+            <style type="text/css">
+                ul li:first-child {
+                    color: red;
+                }
+        </style>
+        设置无序列表<ul>中的最后一个<li>为红色：
+            ul li:last-child {
+                color: blue;
+            }
+    3.下一个兄弟选择器
+        IE7 开始兼容，IE6 不兼容。
+        +表示选择下一个兄弟
+            <style type="text/css">
+                h3 + p {
+                    color: red;
+                }
+            </style>
+        上方的选择器意思是：选择的是 h3 元素后面紧挨着的第一个兄弟。
