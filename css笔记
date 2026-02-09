@@ -557,3 +557,176 @@ z-index属性：
         层级：
         （1）必须有定位（除去static）
         （2）用z-index来控制层级数。
+
+CSS3的现状
+    浏览器支持程度不够好，有些需要添加私有前缀
+    移动端支持优于PC端
+    不断改进中
+    应用相对广泛
+    #应对的策略：渐进增强
+    （1）坚持渐进增强的原则：让低版本浏览器能正常访问页面，高版本的浏览器用户体验更好。【重要】
+    比如说，同样是一个头像，可能在低版本的浏览器中，头像方的；在高版本的浏览器中，头像是圆的。
+    （2）考虑用户群体。
+    （3）遵照产品的方案。
+
+CSS3 选择器
+    属性选择器
+        属性选择器的标志性符号是 []。
+        匹配含义：
+        ^：开头  $：结尾  *：包含
+        格式：
+        E[title] 选中页面的E元素，并且E存在 title 属性即可。
+        E[title="abc"]选中页面的E元素，并且E需要带有title属性，且属性值完全等于abc。
+        E[attr~=val] 选择具有 att 属性且属性值为：用空格分隔的字词列表，其中一个等于 val 的E元素。
+        E[attr|=val] 表示要么是一个单独的属性值，要么这个属性值是以“-”分隔的。
+        E[title^="abc"] 选中页面的E元素，并且E需要带有 title 属性,属性值以 abc 开头。
+        E[title$="abc"] 选中页面的E元素，并且E需要带有 title 属性,属性值以 abc 结尾。
+        E[title*="abc"] 选中页面的E元素，并且E需要带有 title 属性,属性值任意位置包含abc。
+        比如说，我们用属性选择器去匹配标签的className，是非常方便的。
+
+    结构伪类选择器
+        伪类选择器的标志性符号是 :。
+        CSS中有一些伪类选择器，比如:link、:visited、:hover、:active、:focus。
+        CSS3又新增了其它的伪类选择器。这一小段，我们来学习CSS3中的结构伪类选择器：即通过结构来进行筛选。
+        1、格式：（第一部分）（重要）
+        E:first-child 匹配父元素的第一个子元素E。
+        E:last-child 匹配父元素的最后一个子元素E。
+        E:nth-child(n) 匹配父元素的第n个子元素E。注意，盒子的编号是从1开始算起，不是从0开始算起。
+        E:nth-child(odd) 匹配奇数
+        E:nth-child(even) 匹配偶数
+        E:nth-last-child(n) 匹配父元素的倒数第n个子元素E。
+        理解：
+        （1）这里我们要好好理解父元素的含义，它指的是：以 E 元素的父元素为参考。
+        （2）注意：以上选择器中所选到的元素的类型，必须是指定的类型E，如果选不中，则无效。这个要好好理解，具体可以看CSS参考手册中的E:nth-child(n)的示例。我们可以理解成：先根据选择器找到选中的全部位置，如果发现某个位置不是类型E，则该位置失效。
+        （3）另外，E:nth-child(n)这个属性也很有意思。比如，针对下面这样一组标签：
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                    <li>9</li>
+                    <li>10</li>
+                </ul>
+            上方代码中：
+            如果选择器写成li:nth-child(2)，则表示第2个 li。
+            如果选择器写成li:nth-child(n)，则表示所有的li。因为此时的 n 表示 0,1,2,3,4,5,6,7,8.....（当n小于1时无效，因为n = 0 也是不会选中的）
+            如果选择器写成li:nth-child(2n)，则表示所有的第偶数个 li。
+            如果选择器写成li:nth-child(2n+1)，则表示所有的第奇数个 li。
+            如果选择器写成li:nth-child(-n+5)，则表示前5个 li。
+            如果选择器写成li:nth-last-child(-n+5)，则表示最后5个 li。
+            如果选择器写成li:nth-child(7n)，则表示选中7的倍数。。
+            上面列举的选择器中，我们只要记住： n 表示 0,1,2,3,4,5,6,7,8.....就很容易明白了。
+            2、格式：（第二部分）
+            E:first-of-type 匹配同类型中的第一个同级兄弟元素E。
+            E:last-of-type 匹配同类型中的最后一个同级兄弟元素E。
+            E:nth-of-type(n) 匹配同类型中的第n个同级兄弟元素E。
+            E:nth-last-of-type(n) 匹配同类型中的倒数第n个同级兄弟元素E。
+            既然上面这几个选择器带有type，我们可以这样理解：先在同级里找到所有的E类型，然后根据 n 进行匹配。
+            3、格式：（第三部分）
+            E:empty 匹配没有任何子节点（包括空格等text节点）的元素E。
+            E:target 匹配相关URL指向的E元素。要配合锚点使用。
+
+    伪元素选择器
+        伪元素选择器的标志性符号是 ::。
+        1、格式：（第一部分）
+        E::before 设置在 元素E 前面（依据对象树的逻辑结构）的内容，配合content属性一起使用。
+        E::after 设置在 元素E 后面（依据对象树的逻辑结构）的内容，配合content属性一起使用。
+        E:after、E:before在旧版本里是伪类，在 CSS3 这个新版本里是伪元素。新版本里，E:after、E:before会被自动识别为E::after、E::before，按伪元素来对待，这样做的目的是用来做兼容处理。
+        通过伪元素选择器，就可以添加出类似于span标签的效果（记得要结合 content 属性使用）。
+        通过这两个属性添加的伪元素，是行内元素，需要转换成块元素才能设置宽高。
+        2、格式：（第二部分）
+        E::first-letter 设置元素 E 里面的第一个字符的样式。
+        E::first-line 设置元素 E 里面的第一行的样式。
+        E::selection 设置元素 E 里面被鼠标选中的区域的样式（一般设置颜色和背景色）。
+
+CSS3属性详解
+    文本
+        #text-shadow：设置文本的阴影
+        格式举例：
+            text-shadow: 20px 27px 22px pink;
+        参数解释：水平位移 垂直位移 模糊程度 阴影颜色。
+        /* text-shadow 可以设置多个阴影，每个阴影之间使用逗号隔开*/
+        .tu {
+            text-shadow: -1px -1px 1px #fff, 1px 1px 1px #000;
+        }
+
+        .ao {
+            text-shadow: -1px -1px 1px #000, 1px 1px 1px #fff;
+        }
+        实现凹凸文字效果的方式比较简单，给左上角放黑色的阴影，右下角放白色的阴影，就达到了凹下去的效果。
+    盒模型中的 box-sizing 属性
+        我们在**之前的文章 (opens new window)**中专门讲过盒子模型。
+        CSS3 对盒模型做出了新的定义，即允许开发人员指定盒子宽度和高度的计算方式。
+        这就需要用到 box-sizing属性。它的属性值可以是：content-box、border-box。解释如下。
+        外加模式：（css的默认方式）
+            box-sizing: content-box;
+        解释：此时设置的 width 和 height 是内容区域的宽高。盒子的实际宽度 = 设置的 width + padding + border。此时改变 padding 和 border 的大小，也不会改变内容的宽高，而是盒子的总宽高发生变化。
+    处理兼容性问题：私有前缀
+        通过网址http://caniuse.com/ (opens new window)可以查询CSS3各特性的支持程度。
+        处理兼容性问题的常见方法：为属性添加私有前缀。
+        如此方法不能解决，应尽量避免使用，无需刻意去处理CSS3的兼容性问题。
+        私有前缀的举例：
+        比如说，我想给指定的div设置下面这样一个属性：
+            background: linear-gradient(left, green, yellow);
+        上面这个属性的作用是：添加从左到右的线性渐变，颜色从绿色变为黄色。
+        此时，我们可以为浏览器添加不同的私有前缀，属性就可以生效了。
+        格式如下：
+            -webkit-: 谷歌 苹果
+            -moz-:火狐
+            -ms-：IE
+            -o-：欧朋
+        格式举例如下：
+            background: -webkit-linear-gradient(left, green, yellow);
+            background: -moz-linear-gradient(left, green, yellow);
+            background: -ms-linear-gradient(left, green, yellow);
+            background: -o-linear-gradient(left, green, yellow);
+            background: linear-gradient(left, green, yellow);
+    边框
+        边框的属性很多，其中边框圆角和边框阴影这两个属性，应用十分广泛，兼容性也相对较好，且符合渐进增强的原则，需要重点熟悉。
+        
+            #边框圆角：border-radius 属性
+                边框的每个圆角，本质上是一个圆，圆有水平半径和垂直半径：如果二者相等，就是圆；如果二者不等， 就是椭圆。
+                单个属性的写法：
+                    border-top-left-radius: 60px 120px;        //参数解释：水平半径   垂直半径
+                    border-top-right-radius: 60px 120px;
+                    border-bottom-left-radius: 60px 120px;
+                    border-bottom-right-radius: 60px 120px;
+                复合写法：
+                    border-radius: 60px/120px;             //参数：水平半径/垂直半径
+                    border-radius: 20px 60px 100px 140px;  //从左上开始，顺时针赋值。如果当前角没有值，取对角的值
+                    border-radius: 20px 60px;
+                最简洁的写法：（四个角的半径都相同时）
+                    border-radius: 60px;
+
+            边框阴影：box-shadow 属性
+                格式举例：
+                    box-shadow: 水平偏移 垂直偏移 模糊程度 阴影大小 阴影颜色
+                    box-shadow: 15px 21px 48px -2px #666;
+                参数解释：
+                水平偏移：正值向右 负值向左。
+                垂直偏移：正值向下 负值向上。
+                模糊程度：不能为负值。
+                另外，后面还可以再加一个inset属性，表示内阴影。如果不写，则默认表示外阴影。例如：
+	            box-shadow:3px 3px 3px 3px #666 inset;
+                注意：设置边框阴影不会改变盒子的大小，即不会影响其兄弟元素的布局。
+                我们还可以设置多重边框阴影，实现更好的效果，增强立体感。
+
+            边框图片
+                边框图片有以下属性：
+                    /* 边框图片的路径*/
+                    border-image-source: url("images/border.png");
+                    /* 图片边框的裁剪*/
+                    border-image-slice: 27;
+                    /*图片边框的宽度*/
+                    border-image-width: 27px;
+                    /*边框图片的平铺*/
+                    /* repeat :正常平铺 但是可能会显示不完整*/
+                    /*round: 平铺 但是保证 图片完整*/
+                    /*stretch: 拉伸显示*/
+                    border-image-repeat: stretch;
+                我们也可以写成一个综合属性：
+                    border-image: url("images/border.png") 27/20px round;
