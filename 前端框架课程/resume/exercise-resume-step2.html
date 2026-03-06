@@ -1,0 +1,190 @@
+<!-- 练习2：基础CSS样式（10分钟） -->
+<!-- 目标：在练习1的语义化HTML基础上，添加基础CSS美化 -->
+<!-- 要求： -->
+<!-- 1. 重置默认样式（* { margin: 0; padding: 0; box-sizing: border-box; }） -->
+<!-- 2. 设置body的基础样式（字体、行高、背景色） -->
+<!-- 3. 设置标题样式（h1字体大小、颜色、间距） -->
+<!-- 4. 设置段落和列表样式（行高、列表样式类型） -->
+<!-- 5. 添加链接样式（颜色、下划线、悬停效果） -->
+<!-- 6. 使用类选择器为各section添加间距和边框 -->
+<!-- 7. 添加简单的悬停效果（a:hover） -->
+<!-- 8. 使用max-width和margin实现内容居中 -->
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>李明 - 前端开发工程师</title>
+    <style>
+      /* 任务1：重置默认样式 */
+      /* 提示：* 选择器设置 margin: 0; padding: 0; box-sizing: border-box; */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* 任务2：设置body基础样式 */
+      /* 提示：font-family: 'Microsoft YaHei', sans-serif; */
+      /* 提示：line-height: 1.6; background-color: #f5f5f5; */
+      body {
+        font-family: "Microsoft YaHei", sans-serif;
+        line-height: 1.6;
+        background-color: #f5f5f5;
+      }
+
+      /* 任务3：设置简历容器样式 */
+      /* 提示：max-width: 800px; margin: 0 auto; background: white; */
+      .resume-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+      }
+
+      /* 任务4：设置header样式 */
+      /* 提示：背景色 #2c3e50，文字白色，内边距40px，文字居中 */
+      header {
+        background-color: #2c3e50;
+        color: white;
+        padding: 40px;
+        text-align: center;
+      }
+
+      /* 任务5：设置h1-h3样式 */
+      /* 提示：h1 字体大小32px，h2 字体大小24px，添加适当margin-bottom */
+
+      h1 {
+        font-size: 32px;
+        margin-bottom: 10px;
+      }
+
+      h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      /* 任务6：设置段落和链接样式 */
+      /* 提示：p颜色#333，a颜色#3498db，a:hover颜色#2980b9 */
+      p {
+        color: #333;
+      }
+
+      a {
+        color: #3498db;
+      }
+
+      a:hover {
+        color: #2980b9;
+      }
+
+      /* 任务7：设置section样式 */
+      /* 提示：padding 30px，border-bottom 1px solid #eee */
+      section {
+        padding: 30px;
+        border-bottom: 1px solid #eee;
+      }
+
+      /* 任务8：设置列表样式 */
+      /* 提示：ul { padding-left: 20px; } li { margin-bottom: 8px; } */
+      ul {
+        padding-left: 20px;
+      }
+      li {
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 下面是练习1完成的语义化HTML结构，请在此基础上添加CSS -->
+
+    <div class="resume-container">
+      <header>
+        <h1>李明</h1>
+        <p class="title">前端开发工程师</p>
+        <nav class="contact">
+          <a href="tel:13812345678">📱 138-1234-5678</a>
+          <a href="mailto:liming@example.com">✉️ liming@example.com</a>
+          <a href="https://github.com/liming-dev" target="_blank"
+            >🐙 github.com/liming-dev</a
+          >
+          <a href="https://liming.dev" target="_blank">🌐 liming.dev</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="summary">
+          <h2>个人简介</h2>
+          <p>
+            3年前端开发经验，精通Vue.js生态和现代化前端工程化工具。具备良好的代码规范和组件设计能力，熟悉从需求分析到部署上线的完整开发流程。热衷于性能优化和用户体验提升，拥有多个完整项目开发经验。
+          </p>
+        </section>
+
+        <section class="education">
+          <h2>教育背景</h2>
+          <article>
+            <h3>某某科技大学 | 计算机科学与技术 | 本科</h3>
+            <time>2019.09 - 2023.06</time>
+            <ul>
+              <li>GPA: 3.6/4.0，专业排名前15%</li>
+              <li>
+                主修课程：数据结构与算法、软件工程、Web开发技术、数据库原理
+              </li>
+              <li>
+                获奖经历：国家励志奖学金（2021）、校级优秀毕业生、程序设计竞赛二等奖
+              </li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="skills">
+          <h2>专业技能</h2>
+          <h3>前端技术</h3>
+          <ul>
+            <li>
+              <strong>核心框架</strong>：Vue 3（Composition API）、Vue
+              Router、Pinia/Vuex
+            </li>
+            <li>
+              <strong>基础技术</strong
+              >：HTML5、CSS3、JavaScript（ES6+）、TypeScript
+            </li>
+            <li>
+              <strong>UI框架</strong>：Element Plus、Ant Design Vue、Tailwind
+              CSS
+            </li>
+          </ul>
+        </section>
+
+        <section class="projects">
+          <h2>项目经历</h2>
+          <article>
+            <h3>企业级后台管理系统 | 前端负责人</h3>
+            <time>2023.03 - 2023.06</time>
+            <ul>
+              <li>负责系统整体架构设计，搭建基于Vite的现代化开发环境</li>
+              <li>实现RBAC权限管理系统，支持动态路由和按钮级权限控制</li>
+              <li>封装15+通用业务组件，提升开发效率40%</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="evaluation">
+          <h2>自我评价</h2>
+          <ol>
+            <li>
+              <strong>技术热情</strong>：持续关注前端新技术，定期输出技术博客
+            </li>
+            <li><strong>解决问题</strong>：善于使用Chrome DevTools进行调试</li>
+            <li><strong>代码质量</strong>：注重代码规范和可维护性</li>
+          </ol>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

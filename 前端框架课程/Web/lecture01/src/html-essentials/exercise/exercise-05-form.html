@@ -1,0 +1,77 @@
+<!-- 练习5：表单（用户交互的核心） -->
+<!-- 20/80原则：form、input、label、button 是90%表单场景的基础 -->
+<!--
+要求：
+1. 使用form创建表单，设置action和method属性
+2. 使用label关联表单控件（for属性或嵌套）
+3. 使用不同类型的input（text、email、password、radio、checkbox）
+4. 使用select和option创建下拉选择
+5. 使用textarea创建多行文本
+6. 使用button提交表单
+7. 使用required属性进行简单验证
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单练习</title>
+    <style>
+        body { font-family: 'Microsoft YaHei', sans-serif; line-height: 1.6; max-width: 600px; margin: 0 auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        button { background: #3498db; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+
+    <h1>用户注册</h1>
+
+    <!-- 任务1：创建表单，method="post"，action="#" -->
+
+        <!-- 任务2：用户名输入
+             使用label(for="username") + input(type="text", id="username", name="username", required)
+        -->
+
+
+        <!-- 任务3：邮箱输入
+             使用input type="email"，添加required属性
+        -->
+
+
+        <!-- 任务4：密码输入
+             使用input type="password"
+        -->
+
+
+        <!-- 任务5：性别选择（单选）
+             使用input type="radio"，name="gender"
+             选项：男、女
+        -->
+
+
+        <!-- 任务6：兴趣爱好（多选）
+             使用input type="checkbox"
+             选项：阅读、运动、音乐、编程
+        -->
+
+
+        <!-- 任务7：下拉选择城市
+             使用select + option
+             选项：北京、上海、广州、深圳
+        -->
+
+
+        <!-- 任务8：个人简介
+             使用textarea，设置rows="4"
+        -->
+
+
+        <!-- 任务9：提交按钮 -->
+
+
+</body>
+</html>

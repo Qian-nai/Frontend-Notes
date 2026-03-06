@@ -1,0 +1,137 @@
+<!-- 练习2答案：盒模型 -->
+<!-- 核心知识点：
+  盒模型的四个组成部分（从内到外）：
+  1. Content（内容）- 显示文本和图像的区域
+  2. Padding（内边距）- 内容与边框之间的空间，背景色会延伸到padding
+  3. Border（边框）- 围绕padding的边界
+  4. Margin（外边距）- 边框外部的空间，透明，用于分隔元素
+
+  box-sizing属性：
+  - content-box（默认）：width/height只包含content
+    实际宽度 = width + padding*2 + border*2
+    实际高度 = height + padding*2 + border*2
+
+  - border-box：width/height包含content + padding + border
+    实际宽度 = width（已包含padding和border）
+    实际高度 = height（已包含padding和border）
+    内容宽度 = width - padding*2 - border*2
+
+  为什么推荐使用border-box：
+  1. 符合直觉：设置的width就是看到的宽度
+  2. 简化计算：不需要考虑padding和border的影响
+  3. 响应式友好：百分比宽度时更容易控制
+
+  外边距折叠（Margin Collapsing）：
+  - 垂直相邻的两个块级元素的margin会合并（取最大值）
+  - 父元素和第一个/最后一个子元素的margin可能合并
+  - 解决办法：添加padding、border或使用flex/grid布局
+
+  水平居中技巧：
+  - 块级元素：margin: 0 auto（需要设置宽度）
+  - 行内元素：text-align: center在父元素上设置
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒模型练习</title>
+    <style>
+        /* 全局重置，统一盒模型计算方式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 容器样式 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;  /* 水平居中 */
+            background: #ecf0f1;
+            padding: 20px;
+        }
+
+        /* Box 1：使用border-box */
+        .box1 {
+            width: 300px;
+            height: 200px;
+            background-color: #3498db;
+            color: white;
+            padding: 20px;
+            border: 5px solid #2c3e50;
+            margin: 20px;
+            /* 实际占用空间：宽300px，高200px（包含padding和border） */
+            /* 内容区域：宽250px(300-20*2-5*2)，高150px */
+        }
+
+        /* Box 2：使用content-box（对比用） */
+        .box2 {
+            width: 300px;
+            height: 200px;
+            background-color: #e74c3c;
+            color: white;
+            padding: 20px;
+            border: 5px solid #c0392b;
+            margin: 20px;
+            box-sizing: content-box;  /* 显式设置为默认值 */
+            /* 实际占用空间：宽350px(300+20*2+5*2)，高250px */
+            /* 内容区域：宽300px，高200px */
+        }
+
+        /* 拓展：盒模型的应用 */
+
+        /* 卡片组件 */
+        .card {
+            background: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* 按钮的内边距 */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;  /* 上下10px，左右20px */
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 5px;
+        }
+
+        /* 间隔工具类 */
+        .mt-20 { margin-top: 20px; }
+        .mb-20 { margin-bottom: 20px; }
+        .p-20 { padding: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS盒模型示例</h1>
+
+        <h2>Box 1 (box-sizing: border-box)</h2>
+        <p>设置width: 300px，实际占用宽度就是300px（包含padding和border）</p>
+        <div class="box1">
+            内容区域。设置了border-box后，width/height包含padding和border。
+        </div>
+
+        <h2>Box 2 (默认content-box)</h2>
+        <p>设置width: 300px，实际占用宽度是350px（额外加上padding和border）</p>
+        <div class="box2">
+            内容区域。默认情况下，width/height只包含内容，padding和border会额外增加尺寸。
+        </div>
+
+        <h2>实际应用：卡片组件</h2>
+        <div class="card">
+            <h3>卡片标题</h3>
+            <p>卡片内容。使用padding控制内边距，margin控制外边距，border添加边框。</p>
+            <a href="#" class="btn">按钮1</a>
+            <a href="#" class="btn">按钮2</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>答案：时间线布局</title>
+    <style>
+        /* ==================== 基础样式 ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* ==================== 时间线样式 ==================== */
+
+        /*
+         * 时间线容器
+         * - position: relative 创建定位上下文，供伪元素使用
+         * - padding-left 为时间线竖线留出空间
+         */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        /*
+         * 时间线竖线（使用 ::before 伪元素）
+         * - position: absolute 绝对定位
+         * - left: 15px 控制竖线位置（与圆点对齐）
+         * - top: 0, bottom: 0 使竖线贯穿整个时间线
+         * - width: 2px 细线效果
+         * - background: rgba(255,255,255,0.3) 半透明白色
+         */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /*
+         * 时间线项目
+         * - position: relative 为圆点伪元素创建定位上下文
+         * - 白色背景，圆角，内边距，底部外边距
+         * - box-shadow 添加阴影效果
+         * - transition 实现平滑过渡动画
+         */
+        .timeline-item {
+            position: relative;
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        /*
+         * 时间点圆点（使用 ::before 伪元素）
+         * - position: absolute 绝对定位
+         * - left: -33px 将圆点定位到竖线上（考虑padding-left和圆点自身位置）
+         * - top: 30px 控制垂直位置
+         * - width/height: 16px 圆形大小
+         * - border-radius: 50% 创建圆形
+         * - background: #667eea 圆点颜色（与主题一致）
+         * - border: 3px solid #fff 白色边框突出显示
+         * - z-index: 1 确保圆点在竖线上方
+         */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 30px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        /*
+         * 时间标签样式
+         * - 紫色字体，与主题一致
+         * - 小号字体，加粗
+         * - 字母间距增加可读性
+         */
+        .timeline-date {
+            color: #667eea;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        /*
+         * 标题样式
+         * - 深灰色字体
+         * - 中等字号
+         * - 上下边距控制间距
+         */
+        .timeline-title {
+            color: #333;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            margin-top: 5px;
+        }
+
+        /*
+         * 内容样式
+         * - 灰色字体，降低视觉权重
+         * - 舒适的行高
+         * - 字号略小
+         */
+        .timeline-content {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /*
+         * 悬停效果 - 时间线项目
+         * - transform: translateX(5px) 向右微移
+         * - box-shadow 增强阴影
+         * - background 轻微变色
+         */
+        .timeline-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            background: #fafbff;
+        }
+
+        /*
+         * 悬停效果 - 圆点
+         * - background 颜色变深
+         * - transform: scale(1.2) 放大效果
+         * - box-shadow 增强发光效果
+         */
+        .timeline-item:hover::before {
+            background: #764ba2;
+            transform: scale(1.2);
+            box-shadow: 0 0 0 5px rgba(118, 75, 162, 0.3);
+        }
+
+        /* 答案说明区域 */
+        .answer-note {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .answer-note h3 {
+            color: #155724;
+            margin-bottom: 10px;
+        }
+
+        .answer-note p {
+            color: #155724;
+            line-height: 1.8;
+        }
+
+        .answer-note code {
+            background: rgba(255,255,255,0.5);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>时间线布局 - 完整答案</h1>
+
+        <!-- 时间线结构 -->
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2024年1月</div>
+                <h3 class="timeline-title">项目启动</h3>
+                <p class="timeline-content">
+                    团队成立，确定项目目标和技术栈选型。进行需求分析和架构设计，制定开发计划。
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2024年3月</div>
+                <h3 class="timeline-title">原型设计完成</h3>
+                <p class="timeline-content">
+                    完成产品原型设计，通过用户测试验证核心功能。收集反馈并进行迭代优化。
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2024年6月</div>
+                <h3 class="timeline-title">MVP版本发布</h3>
+                <p class="timeline-content">
+                    最小可行产品上线，邀请种子用户进行内测。监控系统稳定性，修复关键问题。
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2024年9月</div>
+                <h3 class="timeline-title">正式版上线</h3>
+                <p class="timeline-content">
+                    产品正式对外发布，全面开放注册。启动市场推广活动，用户量快速增长。
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2024年12月</div>
+                <h3 class="timeline-title">功能迭代升级</h3>
+                <p class="timeline-content">
+                    根据用户反馈推出2.0版本，新增多项核心功能，用户体验大幅提升。
+                </p>
+            </div>
+        </div>
+
+        <!-- 答案说明 -->
+        <div class="answer-note">
+            <h3>实现要点解析</h3>
+            <p>
+                <strong>1. 定位上下文：</strong>时间线容器使用 <code>position: relative</code>，为伪元素创建定位上下文。<br><br>
+
+                <strong>2. 竖线实现：</strong>使用 <code>.timeline::before</code> 创建伪元素，设置 <code>position: absolute</code>、
+                <code>left: 15px</code>、<code>top: 0</code>、<code>bottom: 0</code>、<code>width: 2px</code>，
+                实现贯穿整个时间线的竖线。<br><br>
+
+                <strong>3. 圆点实现：</strong>每个时间线项目使用 <code>.timeline-item::before</code> 创建圆点，
+                通过 <code>left: -33px</code> 将其定位到竖线上（40px的padding-left - 15px的竖线位置 - 圆点半径调整）。<br><br>
+
+                <strong>4. 圆点样式：</strong>使用 <code>border-radius: 50%</code> 创建圆形，
+                <code>border: 3px solid #fff</code> 添加白色边框，<code>box-shadow</code> 添加发光效果。<br><br>
+
+                <strong>5. 悬停效果：</strong>使用 <code>transition: all 0.3s ease</code> 实现平滑过渡，
+                悬停时卡片右移、阴影增强，圆点放大并变色。<br><br>
+
+                <strong>6. z-index控制：</strong>圆点设置 <code>z-index: 1</code> 确保显示在竖线上方。
+            </p>
+        </div>
+    </div>
+</body>
+</html>

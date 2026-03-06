@@ -1,0 +1,155 @@
+<!-- 练习3：模块样式与响应式（10分钟） -->
+<!-- 目标：完善各模块样式，添加Flexbox布局和响应式支持 -->
+<!-- 要求： -->
+<!-- 1. 头部使用Flexbox布局，头像圆形显示 -->
+<!-- 2. 联系方式使用Flexbox横向排列，支持自动换行 -->
+<!-- 3. section标题添加装饰线（左边框或下边框） -->
+<!-- 4. 教育背景添加时间线样式或卡片样式 -->
+<!-- 5. 技能列表使用双列布局（桌面端） -->
+<!-- 6. 添加@media查询实现响应式（手机端单列） -->
+<!-- 7. 添加过渡动画效果（transition） -->
+<!-- 8. 添加打印样式优化（@media print） -->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李明 - 前端开发工程师</title>
+    <style>
+        /* 基础重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* 任务1：完善头部Flexbox布局 */
+        /* 提示：header { display: flex; align-items: center; justify-content: space-between; } */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+        }
+
+        /* 任务2：添加头像样式（圆形） */
+        /* 提示：.avatar { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; } */
+
+
+        /* 任务3：联系方式Flexbox布局 */
+        /* 提示：.contact { display: flex; flex-wrap: wrap; gap: 15px; } */
+        /* 提示：.contact a { color: white; text-decoration: none; } */
+
+
+        /* 任务4：section标题装饰 */
+        /* 提示：section h2 { border-left: 4px solid #667eea; padding-left: 15px; color: #333; } */
+
+
+        section {
+            padding: 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        /* 任务5：内容容器 */
+        /* 提示：.resume-container { max-width: 900px; margin: 0 auto; background: white; box-shadow: 0 0 20px rgba(0,0,0,0.1); } */
+
+
+        /* 任务6：时间样式 */
+        /* 提示：time { color: #667eea; font-size: 14px; font-weight: bold; } */
+
+
+        /* 任务7：响应式断点 */
+        /* 提示：@media (max-width: 768px) { header { flex-direction: column; text-align: center; } } */
+
+
+        /* 任务8：打印样式优化（选做） */
+        /* 提示：@media print { body { background: white; } .resume-container { box-shadow: none; } } */
+
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <header>
+            <!-- 添加头像区域 -->
+            <div class="header-left">
+                <!-- 任务：添加圆形头像占位 -->
+                <div class="avatar-placeholder">头像</div>
+            </div>
+            <div class="header-right">
+                <h1>李明</h1>
+                <p class="title">前端开发工程师</p>
+                <nav class="contact">
+                    <a href="tel:13812345678">📱 138-1234-5678</a>
+                    <a href="mailto:liming@example.com">✉️ liming@example.com</a>
+                    <a href="https://github.com/liming-dev" target="_blank">🐙 github.com/liming-dev</a>
+                    <a href="https://liming.dev" target="_blank">🌐 liming.dev</a>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <section class="summary">
+                <h2>个人简介</h2>
+                <p>3年前端开发经验，精通Vue.js生态和现代化前端工程化工具。具备良好的代码规范和组件设计能力，熟悉从需求分析到部署上线的完整开发流程。</p>
+            </section>
+
+            <section class="education">
+                <h2>教育背景</h2>
+                <article>
+                    <h3>某某科技大学 | 计算机科学与技术 | 本科</h3>
+                    <time>2019.09 - 2023.06</time>
+                    <ul>
+                        <li>GPA: 3.6/4.0，专业排名前15%</li>
+                        <li>获奖经历：国家励志奖学金（2021）、校级优秀毕业生</li>
+                    </ul>
+                </article>
+            </section>
+
+            <section class="skills">
+                <h2>专业技能</h2>
+                <article>
+                    <h3>前端技术</h3>
+                    <ul>
+                        <li><strong>核心框架</strong>：Vue 3、Vue Router、Pinia/Vuex</li>
+                        <li><strong>基础技术</strong>：HTML5、CSS3、JavaScript（ES6+）、TypeScript</li>
+                        <li><strong>UI框架</strong>：Element Plus、Ant Design Vue、Tailwind CSS</li>
+                    </ul>
+                </article>
+            </section>
+
+            <section class="projects">
+                <h2>项目经历</h2>
+                <article>
+                    <h3>企业级后台管理系统 | 前端负责人</h3>
+                    <time>2023.03 - 2023.06</time>
+                    <ul>
+                        <li>负责系统整体架构设计，搭建基于Vite的现代化开发环境</li>
+                        <li>实现RBAC权限管理系统，支持动态路由和按钮级权限控制</li>
+                        <li>封装15+通用业务组件，提升开发效率40%</li>
+                    </ul>
+                </article>
+            </section>
+
+            <section class="evaluation">
+                <h2>自我评价</h2>
+                <ol>
+                    <li><strong>技术热情</strong>：持续关注前端新技术，定期输出技术博客</li>
+                    <li><strong>解决问题</strong>：善于使用Chrome DevTools进行调试</li>
+                    <li><strong>代码质量</strong>：注重代码规范和可维护性</li>
+                </ol>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

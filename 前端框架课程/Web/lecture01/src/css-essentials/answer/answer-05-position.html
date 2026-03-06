@@ -1,0 +1,189 @@
+<!-- 练习5答案：定位 -->
+<!-- 核心知识点：
+  position属性用于改变元素的定位方式：
+
+  1. static（默认值）
+     - 正常文档流中的位置
+     - top/left/right/bottom/z-index 无效
+
+  2. relative - 相对定位
+     - 相对于元素在文档流中的原始位置
+     - 使用 top/left/right/bottom 进行偏移
+     - 不脱离文档流，原位置仍被占用
+     - 常用于创建定位上下文（给absolute当参照）
+
+  3. absolute - 绝对定位
+     - 相对于最近的定位祖先元素（position不为static）
+     - 如果没有定位祖先，则相对于初始包含块（通常是视口）
+     - 脱离文档流，不占据空间
+     - 常用于：弹窗、下拉菜单、徽章、悬浮按钮
+
+  4. fixed - 固定定位
+     - 相对于视口（浏览器窗口）
+     - 不随页面滚动而移动
+     - 脱离文档流
+     - 常用于：固定导航、回到顶部按钮、悬浮客服
+
+  5. sticky - 粘性定位（新）
+     - 相对定位和固定定位的混合
+     - 在阈值之前是relative，超过阈值变为fixed
+     - 常用于：表头固定、侧边栏固定
+
+  z-index - 层叠顺序：
+  - 控制定位元素的堆叠顺序
+  - 数值越大越在上层
+  - 只对position不为static的元素有效
+  - 创建新的层叠上下文（stacking context）
+
+  使用建议：
+  - 优先使用Flexbox/Grid布局，少用定位
+  - 定位适合特殊场景：悬浮元素、弹窗、固定头部
+  - 注意z-index管理，避免数值混乱
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定位练习</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            padding: 20px;
+            height: 200vh; /* 让页面可滚动 */
+        }
+
+        h2 {
+            margin: 30px 0 15px;
+            color: #2c3e50;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* 相对定位 */
+        .relative-box {
+            position: relative;
+            left: 50px;    /* 向右偏移50px */
+            top: 20px;     /* 向下偏移20px */
+            background: #3498db;
+        }
+
+        /* 定位上下文容器 */
+        .container {
+            position: relative;  /* 创建定位上下文 */
+            background: #ecf0f1;
+            padding: 20px;
+            height: 200px;
+            border-radius: 8px;
+        }
+
+        /* 绝对定位 */
+        .absolute-box {
+            position: absolute;
+            right: 20px;   /* 距离右边界20px */
+            top: 20px;     /* 距离上边界20px */
+            background: #e74c3c;
+            border-radius: 8px;
+        }
+
+        /* 固定定位 */
+        .fixed-box {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: #2ecc71;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .fixed-box:hover {
+            transform: scale(1.1);
+        }
+
+        /* 拓展：粘性定位 */
+        .sticky-header {
+            position: sticky;
+            top: 0;  /* 滚动到顶部时固定 */
+            background: #9b59b6;
+            color: white;
+            padding: 15px;
+            margin: 20px 0;
+            z-index: 100;
+        }
+
+        /* 拓展：z-index层叠 */
+        .stack-container {
+            position: relative;
+            height: 150px;
+            margin-top: 20px;
+        }
+
+        .stack-box {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+        }
+
+        .stack-box:nth-child(1) {
+            background: #e74c3c;
+            left: 0;
+            z-index: 1;
+        }
+
+        .stack-box:nth-child(2) {
+            background: #f39c12;
+            left: 30px;
+            top: 30px;
+            z-index: 2;
+        }
+
+        .stack-box:nth-child(3) {
+            background: #3498db;
+            left: 60px;
+            top: 60px;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+    <h2>相对定位 (relative)</h2>
+    <p>相对于元素原来的位置偏移，不脱离文档流。</p>
+    <div class="box relative-box">relative</div>
+    <p>后面的内容（relative仍占据原位置）</p>
+
+    <h2>绝对定位 (absolute)</h2>
+    <p>相对于最近的定位祖先元素，脱离文档流。</p>
+    <div class="container">
+        <p>我是容器（设置了position: relative）</p>
+        <div class="box absolute-box">absolute</div>
+    </div>
+
+    <h2>固定定位 (fixed)</h2>
+    <p>相对于视口固定位置，不随滚动移动。看右下角！</p>
+    <div class="box fixed-box">↑</div>
+
+    <h2>粘性定位 (sticky)</h2>
+    <div class="sticky-header">我是粘性头部，滚动到顶部时会固定</div>
+    <p>向下滚动看看效果...</p>
+
+    <h2>z-index层叠</h2>
+    <div class="stack-container">
+        <div class="stack-box">z:1</div>
+        <div class="stack-box">z:2</div>
+        <div class="stack-box">z:3</div>
+    </div>
+</body>
+</html>

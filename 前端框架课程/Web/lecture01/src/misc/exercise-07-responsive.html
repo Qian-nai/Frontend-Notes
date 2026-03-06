@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习：响应式断点实战</title>
+    <style>
+        /* ==================== 基础样式（已提供） ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+
+        /* 页面标题 */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            opacity: 0.9;
+        }
+
+        /* ==================== 题目说明区域 ==================== */
+        .instructions {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .instructions h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .instructions table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .instructions th,
+        .instructions td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .instructions th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+
+        .instructions code {
+            background: #f4f4f4;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #d63384;
+            font-family: 'Consolas', monospace;
+        }
+
+        /* ==================== 布局容器（初始结构） ==================== */
+
+        /*
+         * 主容器 .container
+         * 提示：后续需要添加 margin: 0 auto 实现居中
+         */
+        .container {
+            /* 基础容器样式，后续断点中完善 */
+            width: 100%;
+        }
+
+        /*
+         * 侧边栏 .sidebar
+         * 提示：设置背景色、内边距等基础样式
+         */
+        .sidebar {
+            background: #2c3e50;
+            color: #fff;
+            padding: 30px;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #3498db;
+        }
+
+        /*
+         * 主内容区 .main-content
+         * 提示：设置背景色、内边距等基础样式
+         */
+        .main-content {
+            background: #fff;
+            padding: 30px;
+        }
+
+        .main-content h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .main-content p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .content-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .content-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        /* ==================== 响应式断点（需要完成） ==================== */
+
+        /*
+         * TODO 1: 手机端样式（屏幕宽度小于 768px）
+         * 要求：
+         * - 使用媒体查询 @media screen and (max-width: 767px)
+         * - 单列布局，侧边栏和主内容上下排列
+         * - 容器宽度 100%，水平内边距 15px
+         * - 侧边栏文字居中
+         */
+        /* 手机端断点 - 在此添加代码 */
+
+
+        /*
+         * TODO 2: 平板端样式（屏幕宽度 768px - 1024px）
+         * 要求：
+         * - 使用媒体查询 @media screen and (min-width: 768px) and (max-width: 1024px)
+         * - 双列布局，左侧固定 280px，右侧自适应
+         * - 使用 flex 布局或 grid 布局
+         * - 容器最大宽度 100%
+         */
+        /* 平板端断点 - 在此添加代码 */
+
+
+        /*
+         * TODO 3: 桌面端样式（屏幕宽度大于 1024px）
+         * 要求：
+         * - 使用媒体查询 @media screen and (min-width: 1025px)
+         * - 双列布局，左侧 25%，右侧 75%
+         * - 容器最大宽度 1200px，居中显示
+         * - 使用 flex 布局
+         */
+        /* 桌面端断点 - 在此添加代码 */
+
+
+        /* ==================== 测试方法说明 ==================== */
+        .test-methods {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .test-methods h3 {
+            color: #0d47a1;
+            margin-bottom: 15px;
+        }
+
+        .test-methods ol {
+            margin-left: 20px;
+            color: #1565c0;
+            line-height: 2;
+        }
+
+        .test-methods li {
+            margin-bottom: 8px;
+        }
+
+        /* 当前视口尺寸显示 */
+        .viewport-info {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #333;
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .viewport-info span {
+            color: #4caf50;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面标题 -->
+    <header class="page-header">
+        <h1>响应式断点实战</h1>
+        <p>实现三端适配：手机、平板、桌面</p>
+    </header>
+
+    <!-- 题目说明 -->
+    <div class="instructions">
+        <h2>练习目标</h2>
+        <p>根据下表要求，完成三个断点的响应式布局代码：</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>设备类型</th>
+                    <th>屏幕宽度</th>
+                    <th>布局要求</th>
+                    <th>容器宽度</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>手机</td>
+                    <td><code>&lt; 768px</code></td>
+                    <td>单列，上下排列</td>
+                    <td>100%，居中</td>
+                </tr>
+                <tr>
+                    <td>平板</td>
+                    <td><code>768px - 1024px</code></td>
+                    <td>双列，左侧固定280px</td>
+                    <td>100%</td>
+                </tr>
+                <tr>
+                    <td>桌面</td>
+                    <td><code>&gt; 1024px</code></td>
+                    <td>双列，左侧25%，右侧75%</td>
+                    <td>最大1200px，居中</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 布局容器 -->
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <h2>导航菜单</h2>
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">产品中心</a></li>
+                <li><a href="#">解决方案</a></li>
+                <li><a href="#">技术支持</a></li>
+                <li><a href="#">关于我们</a></li>
+            </ul>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <h2>响应式布局实战</h2>
+            <p>
+                响应式网页设计（Responsive Web Design）是一种网页设计方法，
+                使网页能够自动适应不同设备的屏幕尺寸和分辨率。
+            </p>
+
+            <div class="content-card">
+                <h3>移动端优先</h3>
+                <p>
+                    移动优先（Mobile First）是一种设计策略，先为移动设备设计，
+                    然后通过媒体查询逐步增强大屏幕的体验。
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h3>断点选择</h3>
+                <p>
+                    常见的断点包括：768px（手机/平板分界）、1024px（平板/桌面分界）。
+                    根据项目需求，可以添加更多断点。
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h3>弹性布局</h3>
+                <p>
+                    使用 Flexbox 或 Grid 布局可以更轻松地实现响应式设计。
+                    配合媒体查询，可以精确控制不同屏幕下的布局表现。
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <!-- 测试方法 -->
+    <div class="test-methods">
+        <h3>测试方法</h3>
+        <ol>
+            <li>在浏览器中打开此页面，按 <code>F12</code> 打开开发者工具</li>
+            <li>点击开发者工具中的"切换设备工具栏"按钮（或按 <code>Ctrl+Shift+M</code>）</li>
+            <li>选择不同设备预设（如 iPhone、iPad、Desktop）或手动调整窗口大小</li>
+            <li>观察布局在不同断点的变化，验证是否符合要求</li>
+            <li>也可以使用浏览器窗口手动调整宽度，观察右下角的视口尺寸显示</li>
+        </ol>
+    </div>
+
+    <!-- 视口尺寸显示 -->
+    <div class="viewport-info">
+        当前视口宽度: <span id="viewport-width">--</span>px
+    </div>
+
+    <!-- 实时显示视口宽度 -->
+    <script>
+        function updateViewportWidth() {
+            document.getElementById('viewport-width').textContent = window.innerWidth;
+        }
+        updateViewportWidth();
+        window.addEventListener('resize', updateViewportWidth);
+    </script>
+</body>
+</html>

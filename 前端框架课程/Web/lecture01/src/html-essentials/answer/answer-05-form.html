@@ -1,0 +1,138 @@
+<!-- 练习5答案：表单 -->
+<!-- 核心知识点：
+  1. <form> - 表单容器
+       - action：表单提交地址
+       - method：提交方式（GET/POST）
+       - enctype：编码方式（文件上传时使用multipart/form-data）
+
+  2. <label> - 标签，用于描述表单控件
+       - for属性：关联对应id的控件
+       - 或将控件嵌套在label内
+       - 点击label会自动聚焦到对应控件
+
+  3. <input> - 输入控件，最常用的表单元素
+       常用type值：
+       - text：单行文本（默认）
+       - email：邮箱（自动验证格式）
+       - password：密码（自动隐藏输入）
+       - tel：电话
+       - number：数字
+       - date：日期选择器
+       - radio：单选按钮（同name组互斥）
+       - checkbox：复选框（同name可多选）
+       - file：文件上传
+       - hidden：隐藏字段
+       - submit：提交按钮
+
+       常用属性：
+       - name：字段名（提交时的key）
+       - id：唯一标识（用于label关联）
+       - placeholder：提示文字
+       - required：必填验证
+       - readonly：只读
+       - disabled：禁用
+
+  4. <select> + <option> - 下拉选择
+       - select的name属性作为字段名
+       - option的value属性作为提交值
+       - selected属性设置默认选中
+       - multiple属性允许多选
+
+  5. <textarea> - 多行文本
+       - rows：显示行数
+       - cols：显示列数（一般用CSS控制宽度）
+
+  6. <button> - 按钮
+       - type="submit"：提交表单（默认）
+       - type="button"：普通按钮
+       - type="reset"：重置表单
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单练习</title>
+    <style>
+        body { font-family: 'Microsoft YaHei', sans-serif; line-height: 1.6; max-width: 600px; margin: 0 auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        input[type="radio"], input[type="checkbox"] { width: auto; margin-right: 5px; }
+        .radio-group label, .checkbox-group label { display: inline; font-weight: normal; margin-right: 15px; }
+        button { background: #3498db; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+
+    <h1>用户注册</h1>
+
+    <form action="#" method="post">
+        <!-- 文本输入 -->
+        <div class="form-group">
+            <label for="username">用户名 *</label>
+            <input type="text" id="username" name="username" placeholder="请输入用户名" required>
+        </div>
+
+        <!-- 邮箱输入 -->
+        <div class="form-group">
+            <label for="email">邮箱 *</label>
+            <input type="email" id="email" name="email" placeholder="example@email.com" required>
+        </div>
+
+        <!-- 密码输入 -->
+        <div class="form-group">
+            <label for="password">密码 *</label>
+            <input type="password" id="password" name="password" placeholder="至少6位字符" required>
+        </div>
+
+        <!-- 单选按钮 -->
+        <div class="form-group">
+            <label>性别</label>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="gender" value="male"> 男
+                </label>
+                <label>
+                    <input type="radio" name="gender" value="female"> 女
+                </label>
+            </div>
+        </div>
+
+        <!-- 复选框 -->
+        <div class="form-group">
+            <label>兴趣爱好</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="hobby" value="reading"> 阅读</label>
+                <label><input type="checkbox" name="hobby" value="sports"> 运动</label>
+                <label><input type="checkbox" name="hobby" value="music"> 音乐</label>
+                <label><input type="checkbox" name="hobby" value="coding"> 编程</label>
+            </div>
+        </div>
+
+        <!-- 下拉选择 -->
+        <div class="form-group">
+            <label for="city">所在城市</label>
+            <select id="city" name="city">
+                <option value="">请选择城市</option>
+                <option value="beijing">北京</option>
+                <option value="shanghai">上海</option>
+                <option value="guangzhou">广州</option>
+                <option value="shenzhen">深圳</option>
+            </select>
+        </div>
+
+        <!-- 多行文本 -->
+        <div class="form-group">
+            <label for="bio">个人简介</label>
+            <textarea id="bio" name="bio" rows="4" placeholder="简单介绍一下你自己..."></textarea>
+        </div>
+
+        <!-- 提交按钮 -->
+        <button type="submit">提交注册</button>
+    </form>
+
+</body>
+</html>

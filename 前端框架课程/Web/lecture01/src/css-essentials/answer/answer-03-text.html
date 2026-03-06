@@ -1,0 +1,152 @@
+<!-- 练习3答案：文字样式 -->
+<!-- 核心知识点：
+  1. font-family：字体族
+     - 使用字体栈确保兼容性：'Microsoft YaHei', 'PingFang SC', sans-serif
+     - 衬线字体（serif）vs 无衬线字体（sans-serif）
+     - 中文字体通常需要加引号
+
+  2. font-size：字号
+     - px：绝对单位，不推荐用于响应式
+     - rem：相对于根元素（html）的字体大小，推荐使用
+     - em：相对于父元素的字体大小
+     - 浏览器默认字号通常是16px
+
+  3. font-weight：字重
+     - normal（400）、bold（700）
+     - 100-900的数值，但不是所有字体都支持
+
+  4. color：文字颜色
+     - 十六进制：#3498db、#333（简写）
+     - rgb/rgba：rgb(52, 152, 219)、rgba(0,0,0,0.5)
+     - hsl/hsla：hsl(204, 70%, 53%)
+     - 颜色名：red、blue（少用）
+
+  5. line-height：行高
+     - 无单位数值（推荐）：1.6（表示字体大小的1.6倍）
+     - 百分比：160%
+     - em/rem/px：具体数值
+     - 推荐1.5-1.8之间的值，提升可读性
+
+  6. text-align：文本对齐
+     - left、right、center、justify（两端对齐）
+
+  7. text-decoration：文本装饰
+     - none（去掉下划线）、underline、line-through
+     - 可以设置样式：text-decoration: underline wavy red;
+
+  8. 其他常用属性：
+     - letter-spacing：字间距
+     - word-spacing：词间距
+     - text-transform：大小写转换（uppercase/lowercase/capitalize）
+     - text-indent：首行缩进
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字样式练习</title>
+    <style>
+        /* 基础文字样式 */
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 主标题 */
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 2px;  /* 字间距 */
+        }
+
+        /* 文章标题 */
+        .article-title {
+            font-size: 24px;
+            color: #3498db;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* 元信息 */
+        .meta {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        /* 高亮 */
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        /* 链接样式 */
+        .link {
+            color: #e74c3c;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .link:hover {
+            border-bottom-color: #e74c3c;
+        }
+
+        /* 拓展：其他文字样式 */
+
+        /* 大写文字 */
+        .uppercase {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* 首行缩进 */
+        .indent {
+            text-indent: 2em;
+        }
+
+        /* 删除线 */
+        .strike {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        /* 引用块 */
+        blockquote {
+            font-style: italic;
+            color: #666;
+            border-left: 4px solid #3498db;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>博客文章标题</h1>
+
+    <article>
+        <h2 class="article-title">学习CSS文字样式</h2>
+        <p class="meta">发布于 2024年1月15日 | 作者：张三</p>
+
+        <p class="indent">文字是网页内容的主要载体。<span class="highlight">良好的文字样式</span>可以提升阅读体验。CSS提供了丰富的文字样式属性。</p>
+
+        <blockquote>
+            "排版不仅仅是让文字好看，更是让读者能够舒适地阅读。"
+        </blockquote>
+
+        <p>了解更多：<a href="#" class="link">CSS文字样式指南</a></p>
+    </article>
+</body>
+</html>

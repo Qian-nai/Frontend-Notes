@@ -1,0 +1,77 @@
+<!-- 练习6：响应式设计（现代Web的必备技能） -->
+<!-- 20/80原则：媒体查询 + 流式布局 + 弹性图片 覆盖了80%的响应式需求 -->
+<!--
+要求：
+1. 使用meta viewport确保移动端正常渲染
+2. 使用@media创建媒体查询
+3. 使用百分比和max-width实现流式布局
+4. 使用flex-wrap实现响应式Flex布局
+5. 使用rem/em实现可缩放的文字
+6. 使用隐藏/显示技巧优化移动端体验
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- 任务1：设置viewport，确保移动端正常显示 -->
+
+    <title>响应式设计练习</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* 任务2：设置.container
+             max-width: 1200px
+             margin: 0 auto
+             padding: 0 20px
+        */
+
+
+        /* 任务3：设置.card-list为Flex容器，允许换行 */
+        .card-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* 任务4：设置.card
+             使用flex: 1 1 300px（基础宽度300px，可伸缩）
+             背景色: #ecf0f1
+             padding: 20px
+        */
+
+
+        /* 任务5：创建媒体查询（max-width: 768px）
+             移动端样式：卡片单列，字体调整等
+        */
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>响应式布局示例</h1>
+        <p>调整浏览器窗口大小查看效果</p>
+
+        <div class="card-list">
+            <div class="card">
+                <h2>卡片1</h2>
+                <p>这是卡片内容。在桌面端显示多列，在移动端显示单列。</p>
+            </div>
+            <div class="card">
+                <h2>卡片2</h2>
+                <p>使用Flexbox和媒体查询实现响应式布局。</p>
+            </div>
+            <div class="card">
+                <h2>卡片3</h2>
+                <p>流式布局可以自适应不同屏幕尺寸。</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

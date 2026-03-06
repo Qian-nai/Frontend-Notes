@@ -1,0 +1,100 @@
+<!-- 练习4：Flexbox布局（现代CSS的基石） -->
+<!-- 20/80原则：Flexbox解决了80%的一维布局问题（行或列） -->
+<!--
+要求：
+1. 使用display: flex开启Flexbox布局
+2. 使用justify-content控制主轴对齐（水平方向）
+3. 使用align-items控制交叉轴对齐（垂直方向）
+4. 使用gap设置项目间距
+5. 使用flex-direction改变方向（row/column）
+6. 使用flex-wrap控制换行
+7. 使用flex属性控制项目伸缩
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox练习</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* 任务1：设置.container为Flex容器
+             display: flex
+             justify-content: space-between（两端对齐）
+             gap: 20px
+        */
+        .container {
+            background: #ecf0f1;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .item {
+            background: #3498db;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* 任务2：设置.center-container
+             display: flex
+             justify-content: center（水平居中）
+             align-items: center（垂直居中）
+             height: 200px
+        */
+
+
+        /* 任务3：设置.nav
+             display: flex
+             justify-content: space-around（均匀分布）
+             添加背景色和padding
+        */
+
+
+        /* 任务4：设置.card-list
+             display: flex
+             flex-wrap: wrap（允许换行）
+             gap: 20px
+        */
+        .card {
+            background: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            /* 任务4补充：设置flex: 1 1 200px（可伸缩，基础宽度200px） */
+
+        }
+
+    </style>
+</head>
+<body>
+    <h2>示例1：两端对齐</h2>
+    <div class="container">
+        <div class="item">项目1</div>
+        <div class="item">项目2</div>
+        <div class="item">项目3</div>
+    </div>
+
+    <h2>示例2：垂直水平居中</h2>
+    <div class="center-container">
+        <div class="item">居中内容</div>
+    </div>
+
+    <h2>示例3：导航栏</h2>
+    <nav class="nav">
+        <a href="#">首页</a>
+        <a href="#">产品</a>
+        <a href="#">服务</a>
+        <a href="#">关于</a>
+    </nav>
+
+    <h2>示例4：卡片列表（自动换行）</h2>
+    <div class="card-list">
+        <div class="card">卡片1</div>
+        <div class="card">卡片2</div>
+        <div class="card">卡片3</div>
+        <div class="card">卡片4</div>
+    </div>
+</body>
+</html>

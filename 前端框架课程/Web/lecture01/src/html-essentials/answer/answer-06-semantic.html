@@ -1,0 +1,235 @@
+<!-- 练习6答案：HTML5语义化标签 -->
+<!-- 核心知识点：
+  1. <header> - 页面或区块的头部
+       - 通常包含logo、标题、导航等
+       - 一个页面可以有多个header（如article内也可有）
+
+  2. <nav> - 导航链接区域
+       - 主要的导航链接组
+       - 不是每个链接都需要放在nav中
+
+  3. <main> - 页面主要内容
+       - 每个页面只能有一个
+       - 不能是其他语义化元素的子元素（如article、aside等）
+       - 应该包含与页面主题直接相关的内容
+
+  4. <section> - 主题性内容区块
+       - 有明确的主题，通常包含一个标题
+       - 用于组织内容结构
+       - 不是普通的div容器
+
+  5. <article> - 独立的、完整的内容块
+       - 可以独立分发或复用（如博客文章、新闻报道）
+       - 内部可以有header、footer等
+       - 通常包含标题、内容、元信息
+
+  6. <aside> - 侧边栏内容
+       - 与周围内容间接相关的内容
+       - 如：侧边栏、广告、相关链接、作者简介
+
+  7. <footer> - 页面或区块的底部
+       - 通常包含版权、联系方式、相关链接
+       - 一个页面可以有多个
+
+  8. <time> - 时间/日期标记（本练习未涉及）
+       - datetime属性提供机器可读格式
+
+  9. <figure> / <figcaption> - 图表区域（本练习未涉及）
+
+  10. <mark> - 高亮标记（本练习未涉及）
+
+  语义化的好处：
+  - SEO：搜索引擎更好理解页面结构
+  - 可访问性：屏幕阅读器可以正确导航
+  - 代码可读性：开发者更容易理解结构
+  - 维护性：结构清晰，易于修改
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>语义化标签练习</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 32px;
+        }
+
+        header p {
+            margin: 0 0 20px 0;
+            opacity: 0.9;
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            gap: 30px;
+        }
+
+        main {
+            flex: 2;
+        }
+
+        aside {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            height: fit-content;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        article {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        article:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        article h3 {
+            margin: 0 0 10px 0;
+            color: #667eea;
+        }
+
+        article time {
+            color: #888;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        aside h2 {
+            margin-top: 0;
+            color: #667eea;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>我的博客</h1>
+        <p>分享技术与生活</p>
+        <nav>
+            <a href="#home">首页</a>
+            <a href="#articles">文章</a>
+            <a href="#about">关于</a>
+            <a href="#contact">联系</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <section>
+                <h2>最新文章</h2>
+
+                <article>
+                    <h3>学习HTML5的心得</h3>
+                    <time datetime="2024-01-15">2024年1月15日</time>
+                    <p>HTML5语义化标签让页面结构更清晰。使用header、nav、main、article等标签，不仅提升了代码的可读性，还对SEO和可访问性有很大帮助。在实际项目中，我发现合理使用语义化标签可以减少很多不必要的div嵌套...</p>
+                    <a href="#">阅读更多 →</a>
+                </article>
+
+                <article>
+                    <h3>CSS布局技巧</h3>
+                    <time datetime="2024-01-10">2024年1月10日</time>
+                    <p>Flexbox和Grid是现代CSS布局的利器。Flexbox适合一维布局（行或列），而Grid则擅长二维布局（同时控制行和列）。在实际开发中，我通常会先用Flexbox解决简单布局，遇到复杂布局时再引入Grid...</p>
+                    <a href="#">阅读更多 →</a>
+                </article>
+
+                <article>
+                    <h3>JavaScript入门指南</h3>
+                    <time datetime="2024-01-05">2024年1月5日</time>
+                    <p>JavaScript是Web开发的三大基石之一。对于初学者来说，理解变量、函数、条件语句和循环是基础。在这篇文章中，我将分享一些学习JavaScript的心得和资源推荐...</p>
+                    <a href="#">阅读更多 →</a>
+                </article>
+            </section>
+        </main>
+
+        <aside>
+            <h2>关于作者</h2>
+            <p>一名热爱前端开发的学生，正在学习Vue.js和Node.js。喜欢分享技术心得，希望能和大家一起成长。</p>
+
+            <h3>热门标签</h3>
+            <p>HTML CSS JavaScript Vue</p>
+
+            <h3>联系方式</h3>
+            <p>📧 email@example.com</p>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 我的博客. 保留所有权利。</p>
+        <p>使用 HTML5 + CSS3 构建</p>
+    </footer>
+
+</body>
+</html>

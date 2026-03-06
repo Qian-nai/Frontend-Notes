@@ -1,0 +1,61 @@
+<!-- 练习2答案：文本标签与链接 -->
+<!-- 核心知识点：
+  1. <h1> - 页面主标题，每个页面只能有一个（SEO重要）
+  2. <h2>-<h6> - 子标题，层级递减
+  3. <p> - 段落，块级元素，自动上下留白
+  4. <a href="..."> - 超链接，核心属性href指定目标地址
+       - 外部链接：href="https://..."
+       - 邮箱链接：href="mailto:..."
+       - 电话链接：href="tel:..."
+       - 新窗口打开：target="_blank"
+  5. <strong> - 重要强调（语义化，默认粗体）
+  6. <em> - 斜体强调（语义化，默认斜体）
+  7. <span> - 行内容器，无默认样式，用于CSS控制
+  8. <br> - 强制换行，单标签，少用（用CSS控制间距更佳）
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本标签练习</title>
+    <style>
+        body { font-family: 'Microsoft YaHei', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
+        a { color: #3498db; }
+    </style>
+</head>
+<body>
+
+    <!-- h1：页面主标题 -->
+    <h1>前端开发学习笔记</h1>
+
+    <!-- h2：章节标题 -->
+    <h2>第一章：HTML基础</h2>
+
+    <!-- h3 + p：小节标题和内容 -->
+    <h3>什么是HTML</h3>
+    <p>HTML（HyperText Markup Language，超文本标记语言）是构建网页的标准标记语言。它使用"标签"来描述网页的结构和内容，是前端开发的三大基石之一。</p>
+
+    <!-- strong和em强调 -->
+    <h3>常用标签</h3>
+    <p>在HTML中，<strong>语义化</strong>是一个非常<em>重要</em>的概念。我们应该根据内容的含义选择合适的标签，而不是仅考虑视觉效果。</p>
+
+    <!-- 链接的各种用法 -->
+    <h3>学习资源</h3>
+    <p>
+        <!-- 外部链接：target="_blank"在新窗口打开 -->
+        推荐学习网站：<a href="https://developer.mozilla.org/zh-CN/" target="_blank">MDN文档</a>
+        <br>
+        <!-- 邮箱链接：mailto协议 -->
+        有问题？<a href="mailto:teacher@example.com">联系老师</a>
+    </p>
+
+    <!-- span的应用：配合CSS -->
+    <p>
+        学习进度：<span style="color: #27ae60;">已完成30%</span>，
+        预计剩余时间：<span style="color: #e74c3c;">7天</span>
+    </p>
+
+</body>
+</html>

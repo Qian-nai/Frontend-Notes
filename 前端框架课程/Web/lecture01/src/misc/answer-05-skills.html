@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>答案：技能列表与进度条</title>
+    <style>
+        /* ============================================
+           答案：技能列表与进度条完整样式
+           ============================================ */
+
+        /* CSS变量定义 - 方便主题切换 */
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --bg-color: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+        }
+
+        /* 任务1：全局重置与基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+                         'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            padding: 40px 20px;
+        }
+
+        /* 任务2：技能区域容器 */
+        .skills-section {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+        }
+
+        /* 任务3：区域标题样式 */
+        .section-title {
+            font-size: 24px;
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+            position: relative;
+        }
+
+        /* 标题装饰元素 */
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        /* ============================================
+           技能列表样式（进度条形式）
+           ============================================ */
+
+        .skills-list {
+            margin-bottom: 40px;
+        }
+
+        /* 任务4：单个技能项样式 */
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        /* 任务5：技能信息行（名称+百分比） */
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .skill-name {
+            font-size: 16px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .skill-percent {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* 任务6：进度条外层容器 */
+        .progress-bar {
+            height: 12px;
+            background-color: var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 任务7：进度条内层填充 */
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 6px;
+            /* 初始宽度为0，用于动画 */
+            width: 0;
+            /* 过渡动画 */
+            transition: width 1.5s ease-out;
+            position: relative;
+        }
+
+        /* 进度条光泽效果 */
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.3) 50%,
+                transparent 100%
+            );
+            animation: shimmer 2s infinite;
+        }
+
+        /* 光泽动画 */
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* ============================================
+           技能标签云样式
+           ============================================ */
+
+        .tags-title {
+            font-size: 20px;
+            color: var(--text-primary);
+            margin: 30px 0 20px;
+        }
+
+        /* 任务8：标签云容器 */
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        /* 任务9：基础标签样式 */
+        .tag {
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        /* 任务10：不同熟练度的标签样式 */
+
+        /* 精通(expert) - 深色背景，白色文字，较大字体 */
+        .tag.expert {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+        }
+
+        /* 熟练(proficient) - 主色调背景，白色文字 */
+        .tag.proficient {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 500;
+        }
+
+        /* 熟悉(familiar) - 浅色主色调背景，深色文字 */
+        .tag.familiar {
+            background-color: rgba(102, 126, 234, 0.15);
+            color: var(--primary-color);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        /* 了解(beginner) - 灰色背景，灰色文字 */
+        .tag.beginner {
+            background-color: #f0f0f0;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        /* ============================================
+           拓展：动画效果
+           ============================================ */
+
+        /* 任务11：进度条加载动画 */
+        /* 页面加载后，通过JavaScript添加loaded类触发动画 */
+        .skill-item.loaded .progress-fill {
+            /* 宽度由内联样式控制，这里只定义过渡效果 */
+        }
+
+        /* 条纹动画效果（可选） */
+        .progress-fill.striped {
+            background-image: linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.15) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.15) 50%,
+                rgba(255, 255, 255, 0.15) 75%,
+                transparent 75%,
+                transparent
+            );
+            background-size: 20px 20px;
+            animation: stripe-move 1s linear infinite;
+        }
+
+        @keyframes stripe-move {
+            0% { background-position: 0 0; }
+            100% { background-position: 20px 20px; }
+        }
+
+        /* 任务12：标签悬停效果 */
+        .tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .tag.expert:hover {
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5);
+        }
+
+        .tag:active {
+            transform: translateY(-1px);
+        }
+
+        /* 标签点击后的激活状态 */
+        .tag.active {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* ============================================
+           技能详情面板（交互功能）
+           ============================================ */
+        .skill-detail {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            display: none;
+        }
+
+        .skill-detail.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .skill-detail h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .skill-detail p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* ============================================
+           响应式设计
+           ============================================ */
+
+        /* 任务13：移动端适配 */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            .skills-section {
+                padding: 25px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .skill-name {
+                font-size: 14px;
+            }
+
+            .skill-percent {
+                font-size: 12px;
+            }
+
+            .progress-bar {
+                height: 10px;
+            }
+
+            .skill-tags {
+                gap: 8px;
+            }
+
+            .tag {
+                padding: 6px 14px;
+                font-size: 13px;
+            }
+
+            .tag.expert {
+                font-size: 14px;
+            }
+        }
+
+        /* 超小屏幕 */
+        @media (max-width: 400px) {
+            .skills-section {
+                padding: 20px;
+            }
+
+            .skill-tags {
+                gap: 6px;
+            }
+
+            .tag {
+                padding: 5px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================
+         答案：技能列表与进度条完整HTML结构
+         ============================================ -->
+
+    <section class="skills-section">
+
+        <!-- 区域标题 -->
+        <h2 class="section-title">专业技能</h2>
+
+        <!-- 技能列表（进度条形式） -->
+        <div class="skills-list">
+
+            <!-- 技能项1：HTML/CSS -->
+            <div class="skill-item" data-skill="html">
+                <div class="skill-info">
+                    <span class="skill-name">HTML5 / CSS3</span>
+                    <span class="skill-percent">95%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%"></div>
+                </div>
+            </div>
+
+            <!-- 技能项2：JavaScript -->
+            <div class="skill-item" data-skill="javascript">
+                <div class="skill-info">
+                    <span class="skill-name">JavaScript / ES6+</span>
+                    <span class="skill-percent">90%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+            </div>
+
+            <!-- 技能项3：Vue.js -->
+            <div class="skill-item" data-skill="vue">
+                <div class="skill-info">
+                    <span class="skill-name">Vue.js 3.0</span>
+                    <span class="skill-percent">85%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+            </div>
+
+            <!-- 技能项4：React -->
+            <div class="skill-item" data-skill="react">
+                <div class="skill-info">
+                    <span class="skill-name">React</span>
+                    <span class="skill-percent">75%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%"></div>
+                </div>
+            </div>
+
+            <!-- 技能项5：Node.js -->
+            <div class="skill-item" data-skill="nodejs">
+                <div class="skill-info">
+                    <span class="skill-name">Node.js</span>
+                    <span class="skill-percent">70%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 70%"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 技能标签云 -->
+        <h3 class="tags-title">技术栈</h3>
+        <div class="skill-tags">
+            <!-- 精通级别 -->
+            <span class="tag expert" data-desc="精通HTML5语义化标签、CSS3动画、Flexbox和Grid布局">HTML5</span>
+            <span class="tag expert" data-desc="熟练掌握CSS3新特性，包括动画、过渡、变换等">CSS3</span>
+            <span class="tag expert" data-desc="深入理解JavaScript核心概念，熟练使用ES6+语法">JavaScript</span>
+
+            <!-- 熟练级别 -->
+            <span class="tag proficient" data-desc="熟练使用Vue 3 Composition API，了解响应式原理">Vue 3</span>
+            <span class="tag proficient" data-desc="能够使用Git进行版本控制和团队协作">Git</span>
+            <span class="tag proficient" data-desc="熟悉Webpack和Vite构建工具配置">Webpack</span>
+
+            <!-- 熟悉级别 -->
+            <span class="tag familiar" data-desc="了解React Hooks和组件化开发思想">React</span>
+            <span class="tag familiar" data-desc="能够进行基础的Node.js后端开发">Node.js</span>
+            <span class="tag familiar" data-desc="熟悉TypeScript类型系统和接口定义">TypeScript</span>
+            <span class="tag familiar" data-desc="了解MySQL数据库基础操作">MySQL</span>
+
+            <!-- 了解级别 -->
+            <span class="tag beginner" data-desc="了解Python基础语法，能编写简单脚本">Python</span>
+            <span class="tag beginner" data-desc="了解Docker容器化部署基础">Docker</span>
+            <span class="tag beginner" data-desc="了解AWS云服务基础概念">AWS</span>
+        </div>
+
+        <!-- 技能详情面板（点击标签显示） -->
+        <div class="skill-detail" id="skillDetail">
+            <h4 id="detailTitle">技能详情</h4>
+            <p id="detailContent">点击上方标签查看详细信息</p>
+        </div>
+
+    </section>
+
+    <!-- JavaScript：实现进度条动画和标签交互 -->
+    <script>
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 进度条动画：延迟触发，让用户能看到动画效果
+            setTimeout(() => {
+                const skillItems = document.querySelectorAll('.skill-item');
+                skillItems.forEach((item, index) => {
+                    // 依次延迟显示，创造波浪效果
+                    setTimeout(() => {
+                        item.classList.add('loaded');
+                    }, index * 150);
+                });
+            }, 300);
+
+            // 标签点击交互
+            const tags = document.querySelectorAll('.tag');
+            const detailPanel = document.getElementById('skillDetail');
+            const detailTitle = document.getElementById('detailTitle');
+            const detailContent = document.getElementById('detailContent');
+
+            tags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    // 移除其他标签的激活状态
+                    tags.forEach(t => t.classList.remove('active'));
+                    // 添加当前标签激活状态
+                    this.classList.add('active');
+
+                    // 显示详情
+                    const skillName = this.textContent;
+                    const skillDesc = this.getAttribute('data-desc');
+
+                    detailTitle.textContent = skillName;
+                    detailContent.textContent = skillDesc;
+                    detailPanel.classList.add('show');
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

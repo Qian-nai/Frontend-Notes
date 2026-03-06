@@ -1,0 +1,43 @@
+<!-- Vue 3 组件示例（Composition API） -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 3 示例</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="counter">
+            <p>计数: {{ count }}</p>
+            <p>双倍: {{ doubleCount }}</p>
+            <button @click="increment">+1</button>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref, computed } = Vue;
+
+        createApp({
+            setup() {
+                // 响应式状态
+                const count = ref(0);
+
+                // 计算属性
+                const doubleCount = computed(() => count.value * 2);
+
+                // 方法
+                function increment() {
+                    count.value++;
+                }
+
+                return {
+                    count,
+                    doubleCount,
+                    increment
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

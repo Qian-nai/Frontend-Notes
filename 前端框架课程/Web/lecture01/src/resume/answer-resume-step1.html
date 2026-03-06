@@ -1,0 +1,149 @@
+<!-- 练习1答案：HTML语义化结构（10分钟） -->
+<!-- 知识点： -->
+<!-- - header: 页面或区块的头部 -->
+<!-- - main: 页面主要内容区（每个页面只能有一个） -->
+<!-- - section: 主题性内容区块 -->
+<!-- - article: 独立的、完整的内容块（如项目经历） -->
+<!-- - nav: 导航链接区域 -->
+<!-- - time: 时间/日期标记（机器可读） -->
+<!-- - h1-h3: 标题层级（每个页面应只有一个h1） -->
+<!-- - ul/ol/li: 无序/有序列表 -->
+<!-- - a: 超链接（使用正确的href协议：tel:、mailto:、https://） -->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李明 - 前端开发工程师</title>
+</head>
+<body>
+    <!-- header: 简历头部区域 -->
+    <header>
+        <!-- h1: 页面主标题（姓名） -->
+        <h1>李明</h1>
+        <!-- p: 职位描述 -->
+        <p>前端开发工程师</p>
+        <!-- nav: 联系方式导航 -->
+        <nav>
+            <!-- a: 联系方式链接 -->
+            <!-- tel: 协议用于电话号码 -->
+            <a href="tel:13812345678">📱 138-1234-5678</a>
+            <!-- mailto: 协议用于邮箱 -->
+            <a href="mailto:liming@example.com">✉️ liming@example.com</a>
+            <!-- https:// 协议用于外部链接，target="_blank" 在新窗口打开 -->
+            <a href="https://github.com/liming-dev" target="_blank">🐙 github.com/liming-dev</a>
+            <a href="https://liming.dev" target="_blank">🌐 liming.dev</a>
+        </nav>
+    </header>
+
+    <!-- main: 页面主要内容区 -->
+    <main>
+        <!-- section: 个人简介区块 -->
+        <section>
+            <h2>个人简介</h2>
+            <p>3年前端开发经验，精通Vue.js生态和现代化前端工程化工具。具备良好的代码规范和组件设计能力，熟悉从需求分析到部署上线的完整开发流程。热衷于性能优化和用户体验提升，拥有多个完整项目开发经验。善于团队协作，具备良好的沟通能力和技术文档编写能力。</p>
+        </section>
+
+        <!-- section: 教育背景区块 -->
+        <section>
+            <h2>教育背景</h2>
+            <!-- article: 独立的教育经历项 -->
+            <article>
+                <!-- h3: 子标题（学校信息） -->
+                <h3>某某科技大学 | 计算机科学与技术 | 本科</h3>
+                <!-- time: 时间标记，datetime属性提供机器可读格式 -->
+                <time datetime="2019-09-01/2023-06-30">2019.09 - 2023.06</time>
+                <!-- ul/li: 无序列表展示要点 -->
+                <ul>
+                    <li>GPA: 3.6/4.0，专业排名前15%</li>
+                    <li>主修课程：数据结构与算法、软件工程、Web开发技术、数据库原理、计算机网络</li>
+                    <li>获奖经历：国家励志奖学金（2021）、校级优秀毕业生、程序设计竞赛二等奖</li>
+                </ul>
+            </article>
+        </section>
+
+        <!-- section: 专业技能区块 -->
+        <section>
+            <h2>专业技能</h2>
+            <article>
+                <h3>前端技术</h3>
+                <ul>
+                    <li><strong>核心框架</strong>：Vue 3（Composition API）、Vue Router、Pinia/Vuex</li>
+                    <li><strong>基础技术</strong>：HTML5、CSS3、JavaScript（ES6+）、TypeScript</li>
+                    <li><strong>UI框架</strong>：Element Plus、Ant Design Vue、Bootstrap、Tailwind CSS</li>
+                    <li><strong>工程工具</strong>：Vite、Webpack、Git、npm/pnpm</li>
+                </ul>
+            </article>
+            <article>
+                <h3>其他技能</h3>
+                <ul>
+                    <li><strong>后端基础</strong>：Node.js、Express、RESTful API设计</li>
+                    <li><strong>数据库</strong>：MySQL基础、MongoDB基础</li>
+                    <li><strong>部署运维</strong>：Linux基础、Nginx配置、Docker入门</li>
+                    <li><strong>软技能</strong>：需求分析、技术文档编写、团队协作</li>
+                </ul>
+            </article>
+        </section>
+
+        <!-- section: 项目经历区块 -->
+        <section>
+            <h2>项目经历</h2>
+            <!-- 第一个项目 -->
+            <article>
+                <h3>企业级后台管理系统 | 前端负责人</h3>
+                <time datetime="2023-03-01/2023-06-30">2023.03 - 2023.06</time>
+                <p>Vue 3 + TypeScript + Element Plus</p>
+                <ul>
+                    <li>负责系统整体架构设计，搭建基于Vite的现代化开发环境</li>
+                    <li>实现RBAC权限管理系统，支持动态路由和按钮级权限控制</li>
+                    <li>封装15+通用业务组件（表格、表单、搜索面板等），提升开发效率40%</li>
+                    <li>集成ECharts实现数据可视化大屏，支持实时数据更新</li>
+                    <li>优化首屏加载速度，Lighthouse性能评分从65提升至92</li>
+                </ul>
+            </article>
+            <!-- 第二个项目 -->
+            <article>
+                <h3>电商小程序商城 | 核心开发</h3>
+                <time datetime="2022-09-01/2022-12-31">2022.09 - 2022.12</time>
+                <p>微信小程序 + Vue 3 + UniApp</p>
+                <ul>
+                    <li>参与商品展示、购物车、订单流程等核心模块开发</li>
+                    <li>实现微信支付和支付宝支付的双渠道接入</li>
+                    <li>设计并实现图片懒加载和虚拟列表，解决长列表性能问题</li>
+                    <li>编写30+个复用组件，建立团队内部组件库规范</li>
+                </ul>
+            </article>
+            <!-- 第三个项目 -->
+            <article>
+                <h3>个人技术博客 | 独立开发</h3>
+                <time datetime="2022-06-01">2022.06 - 至今</time>
+                <p>Nuxt 3 + Markdown + Vercel</p>
+                <ul>
+                    <li>使用Nuxt 3构建SSG静态站点，支持Markdown渲染和代码高亮</li>
+                    <li>实现文章分类、标签云、全文搜索等功能</li>
+                    <li>配置自动化部署流程，提交代码后自动构建发布</li>
+                    <li>累计发布技术文章40+篇，月访问量5000+</li>
+                </ul>
+            </article>
+        </section>
+
+        <!-- section: 自我评价区块 -->
+        <section>
+            <h2>自我评价</h2>
+            <!-- ol/li: 有序列表 -->
+            <ol>
+                <li><strong>技术热情</strong>：持续关注前端新技术，定期输出技术博客，参与开源项目贡献</li>
+                <li><strong>解决问题</strong>：善于使用Chrome DevTools进行调试，能快速定位和解决复杂问题</li>
+                <li><strong>代码质量</strong>：注重代码规范和可维护性，熟悉ESLint、Prettier等代码检查工具</li>
+                <li><strong>学习能力</strong>：自学通过AWS云从业者认证，具备快速学习新技术的能力</li>
+            </ol>
+        </section>
+    </main>
+
+    <!-- footer: 页面底部（可选） -->
+    <footer>
+        <p>&copy; 2024 李明. 保留所有权利。</p>
+    </footer>
+</body>
+</html>

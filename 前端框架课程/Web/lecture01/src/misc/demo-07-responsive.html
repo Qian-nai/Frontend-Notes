@@ -1,0 +1,51 @@
+<!-- 响应式设计示例 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式设计</title>
+    <style>
+        /* 移动优先：基础样式 */
+        .responsive-box {
+            width: 100%;
+            padding: 15px;
+            background-color: #3498db;
+            color: white;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        /* 平板设备（≥768px） */
+        @media screen and (min-width: 768px) {
+            .responsive-box {
+                width: 48%;
+                display: inline-block;
+                margin-right: 4%;
+            }
+            .responsive-box:nth-child(2n) {
+                margin-right: 0;
+            }
+        }
+
+        /* 桌面设备（≥1024px） */
+        @media screen and (min-width: 1024px) {
+            .responsive-box {
+                width: 30%;
+                margin-right: 5%;
+            }
+            .responsive-box:nth-child(2n) {
+                margin-right: 5%;
+            }
+            .responsive-box:nth-child(3n) {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="responsive-box">盒子 1</div>
+    <div class="responsive-box">盒子 2</div>
+    <div class="responsive-box">盒子 3</div>
+</body>
+</html>

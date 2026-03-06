@@ -1,0 +1,276 @@
+<!-- 练习2答案：基础CSS样式（10分钟） -->
+<!-- 知识点： -->
+<!-- - * 通配符选择器：重置所有元素的默认样式 -->
+<!-- - 元素选择器：为特定HTML标签设置样式 -->
+<!-- - 类选择器：使用 .className 选择元素 -->
+<!-- - 后代选择器：parent child { } -->
+<!-- - CSS盒模型：content + padding + border + margin -->
+<!-- - 文字样式：font-family, font-size, color, line-height -->
+<!-- - 背景样式：background-color, background（渐变） -->
+<!-- - 链接样式：a, a:hover（伪类） -->
+<!-- - 布局：max-width, margin: 0 auto 实现居中 -->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李明 - 前端开发工程师</title>
+    <style>
+        /* ===== 1. 重置默认样式 ===== */
+        /* 通配符选择器：选中所有元素 */
+        * {
+            margin: 0;
+            padding: 0;
+            /* box-sizing: border-box 使padding和border不增加元素总宽度 */
+            box-sizing: border-box;
+        }
+
+        /* ===== 2. 设置body基础样式 ===== */
+        body {
+            /* 字体栈：优先使用微软雅黑，如果不存在则使用系统无衬线字体 */
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            /* 行高1.6提供舒适的阅读间距 */
+            line-height: 1.6;
+            /* 浅灰色背景突出白色内容区 */
+            background-color: #f5f5f5;
+            /* 默认文字颜色 */
+            color: #333;
+        }
+
+        /* ===== 3. 简历容器样式 ===== */
+        .resume-container {
+            /* 最大宽度限制，防止在大屏幕上过宽 */
+            max-width: 800px;
+            /* 水平居中：上下0，左右自动 */
+            margin: 0 auto;
+            /* 白色背景 */
+            background: white;
+            /* 添加轻微阴影增加层次感 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ===== 4. 头部样式 ===== */
+        header {
+            /* 渐变背景：从左上到右下的紫色渐变 */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* 白色文字 */
+            color: white;
+            /* 内边距：上下40px，左右40px */
+            padding: 40px;
+            /* 文字居中 */
+            text-align: center;
+        }
+
+        /* ===== 5. 标题样式 ===== */
+        /* h1 主标题（姓名） */
+        h1 {
+            /* 字体大小：32px（约2em） */
+            font-size: 32px;
+            /* 底部间距 */
+            margin-bottom: 8px;
+            /* 字间距 */
+            letter-spacing: 2px;
+        }
+
+        /* 职位标题 */
+        .title {
+            font-size: 18px;
+            /* 透明度0.9，稍微淡一点 */
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        /* h2 模块标题 */
+        h2 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 15px;
+            /* 底部边框作为装饰 */
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        /* h3 子标题 */
+        h3 {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 8px;
+            margin-top: 15px;
+        }
+
+        /* ===== 6. 链接样式 ===== */
+        /* 头部内的链接 */
+        header a {
+            /* 继承父元素白色 */
+            color: white;
+            /* 去掉下划线 */
+            text-decoration: none;
+            /* 右侧间距 */
+            margin: 0 10px;
+            /* 字号稍小 */
+            font-size: 14px;
+        }
+
+        /* 悬停效果 */
+        header a:hover {
+            /* 悬停时添加下划线 */
+            text-decoration: underline;
+            /* 透明度变化 */
+            opacity: 0.8;
+        }
+
+        /* 内容区链接 */
+        section a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        section a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== 7. section样式 ===== */
+        section {
+            /* 内边距 */
+            padding: 30px;
+            /* 底部边框分隔 */
+            border-bottom: 1px solid #eee;
+        }
+
+        /* 最后一个section不需要底边框 */
+        section:last-child {
+            border-bottom: none;
+        }
+
+        /* ===== 8. 段落和列表样式 ===== */
+        p {
+            /* 段落底部间距 */
+            margin-bottom: 10px;
+            /* 文字颜色稍淡 */
+            color: #555;
+        }
+
+        /* 无序列表 */
+        ul {
+            /* 左侧内边距，为列表符号留出空间 */
+            padding-left: 20px;
+            /* 列表项间距 */
+            margin-top: 10px;
+        }
+
+        /* 列表项 */
+        li {
+            /* 每项底部间距 */
+            margin-bottom: 8px;
+            /* 文字颜色 */
+            color: #555;
+        }
+
+        /* 有序列表 */
+        ol {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        /* 时间样式 */
+        time {
+            /* 主色调 */
+            color: #667eea;
+            /* 较小字号 */
+            font-size: 14px;
+            /* 加粗 */
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* 强调文字 */
+        strong {
+            color: #333;
+        }
+
+        /* ===== 9. 页脚样式 ===== */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #888;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <header>
+            <h1>李明</h1>
+            <p class="title">前端开发工程师</p>
+            <nav>
+                <a href="tel:13812345678">📱 138-1234-5678</a>
+                <a href="mailto:liming@example.com">✉️ liming@example.com</a>
+                <a href="https://github.com/liming-dev" target="_blank">🐙 github.com/liming-dev</a>
+                <a href="https://liming.dev" target="_blank">🌐 liming.dev</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="summary">
+                <h2>个人简介</h2>
+                <p>3年前端开发经验，精通Vue.js生态和现代化前端工程化工具。具备良好的代码规范和组件设计能力，熟悉从需求分析到部署上线的完整开发流程。热衷于性能优化和用户体验提升，拥有多个完整项目开发经验。善于团队协作，具备良好的沟通能力和技术文档编写能力。</p>
+            </section>
+
+            <section class="education">
+                <h2>教育背景</h2>
+                <article>
+                    <h3>某某科技大学 | 计算机科学与技术 | 本科</h3>
+                    <time datetime="2019-09-01/2023-06-30">2019.09 - 2023.06</time>
+                    <ul>
+                        <li>GPA: 3.6/4.0，专业排名前15%</li>
+                        <li>主修课程：数据结构与算法、软件工程、Web开发技术、数据库原理、计算机网络</li>
+                        <li>获奖经历：国家励志奖学金（2021）、校级优秀毕业生、程序设计竞赛二等奖</li>
+                    </ul>
+                </article>
+            </section>
+
+            <section class="skills">
+                <h2>专业技能</h2>
+                <article>
+                    <h3>前端技术</h3>
+                    <ul>
+                        <li><strong>核心框架</strong>：Vue 3（Composition API）、Vue Router、Pinia/Vuex</li>
+                        <li><strong>基础技术</strong>：HTML5、CSS3、JavaScript（ES6+）、TypeScript</li>
+                        <li><strong>UI框架</strong>：Element Plus、Ant Design Vue、Bootstrap、Tailwind CSS</li>
+                        <li><strong>工程工具</strong>：Vite、Webpack、Git、npm/pnpm</li>
+                    </ul>
+                </article>
+            </section>
+
+            <section class="projects">
+                <h2>项目经历</h2>
+                <article>
+                    <h3>企业级后台管理系统 | 前端负责人</h3>
+                    <time datetime="2023-03-01/2023-06-30">2023.03 - 2023.06</time>
+                    <ul>
+                        <li>负责系统整体架构设计，搭建基于Vite的现代化开发环境</li>
+                        <li>实现RBAC权限管理系统，支持动态路由和按钮级权限控制</li>
+                        <li>封装15+通用业务组件，提升开发效率40%</li>
+                    </ul>
+                </article>
+            </section>
+
+            <section class="evaluation">
+                <h2>自我评价</h2>
+                <ol>
+                    <li><strong>技术热情</strong>：持续关注前端新技术，定期输出技术博客</li>
+                    <li><strong>解决问题</strong>：善于使用Chrome DevTools进行调试</li>
+                    <li><strong>代码质量</strong>：注重代码规范和可维护性</li>
+                </ol>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 李明. 保留所有权利。</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习：时间线布局</title>
+    <style>
+        /* ==================== 基础样式（已提供） ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* ==================== 题目说明区域 ==================== */
+        .instructions {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .instructions h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .instructions ul {
+            margin-left: 20px;
+            line-height: 2;
+            color: #555;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+
+        .instructions code {
+            background: #f4f4f4;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #d63384;
+            font-family: 'Consolas', monospace;
+        }
+
+        /* ==================== 时间线样式（需要完成） ==================== */
+
+        /*
+         * TODO 1: 设置时间线容器样式
+         * - 使用相对定位，为伪元素创建定位上下文
+         * - 设置合适的padding-left，为时间线留出空间
+         */
+        .timeline {
+            /* 在此添加代码 */
+        }
+
+        /*
+         * TODO 2: 使用 ::before 伪元素创建时间线竖线
+         * - 绝对定位，位于左侧
+         * - 宽度2px，高度100%
+         * - 背景色为 rgba(255,255,255,0.3) 或 #fff
+         * - 使用 left 属性控制位置
+         */
+        .timeline::before {
+            /* 在此添加代码 */
+        }
+
+        /*
+         * TODO 3: 设置时间线项目样式
+         * - 相对定位，为圆点创建定位上下文
+         * - 背景色为白色
+         * - 圆角、内边距、外边距
+         * - 阴影效果
+         */
+        .timeline-item {
+            /* 在此添加代码 */
+        }
+
+        /*
+         * TODO 4: 使用 ::before 伪元素创建时间点圆点
+         * - 绝对定位，位于时间线竖线上
+         * - 圆形（border-radius: 50%）
+         * - 宽度16px，高度16px
+         * - 背景色与渐变主题匹配（如 #667eea）
+         * - 白色边框，突出显示
+         * - 使用 left 和 top 控制位置
+         */
+        .timeline-item::before {
+            /* 在此添加代码 */
+        }
+
+        /*
+         * TODO 5: 设置时间标签样式
+         * - 字体颜色、大小
+         * - 字体加粗
+         */
+        .timeline-date {
+            /* 在此添加代码 */
+        }
+
+        /*
+         * TODO 6: 设置标题样式
+         * - 字体颜色、大小
+         * - 上下边距
+         */
+        .timeline-title {
+            /* 在此添加代码 */
+        }
+
+        /*
+         * TODO 7: 设置内容样式
+         * - 字体颜色（灰色）
+         * - 行高
+         */
+        .timeline-content {
+            /* 在此添加代码 */
+        }
+
+        /*
+         * TODO 8: 实现悬停效果
+         * - 鼠标悬停时改变背景色或添加阴影
+         * - 添加过渡动画（transition）
+         * - 可选：圆点颜色变化或放大效果
+         */
+        .timeline-item:hover {
+            /* 在此添加代码 */
+        }
+
+        .timeline-item:hover::before {
+            /* 在此添加代码 */
+        }
+
+        /* 提示区域样式 */
+        .hints {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin-top: 30px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .hints h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .hints p {
+            color: #856404;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>时间线布局练习</h1>
+
+        <!-- 题目说明 -->
+        <div class="instructions">
+            <h2>练习目标</h2>
+            <ul>
+                <li>使用 <code>::before</code> 伪元素创建垂直时间线竖线</li>
+                <li>使用 CSS 定位实现时间点圆点</li>
+                <li>实现悬停高亮效果和过渡动画</li>
+                <li>掌握相对定位和绝对定位的配合使用</li>
+            </ul>
+        </div>
+
+        <!-- 时间线结构（已完成） -->
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2024年1月</div>
+                <h3 class="timeline-title">项目启动</h3>
+                <p class="timeline-content">
+                    团队成立，确定项目目标和技术栈选型。进行需求分析和架构设计，制定开发计划。
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2024年3月</div>
+                <h3 class="timeline-title">原型设计完成</h3>
+                <p class="timeline-content">
+                    完成产品原型设计，通过用户测试验证核心功能。收集反馈并进行迭代优化。
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2024年6月</div>
+                <h3 class="timeline-title">MVP版本发布</h3>
+                <p class="timeline-content">
+                    最小可行产品上线，邀请种子用户进行内测。监控系统稳定性，修复关键问题。
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2024年9月</div>
+                <h3 class="timeline-title">正式版上线</h3>
+                <p class="timeline-content">
+                    产品正式对外发布，全面开放注册。启动市场推广活动，用户量快速增长。
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2024年12月</div>
+                <h3 class="timeline-title">功能迭代升级</h3>
+                <p class="timeline-content">
+                    根据用户反馈推出2.0版本，新增多项核心功能，用户体验大幅提升。
+                </p>
+            </div>
+        </div>
+
+        <!-- 提示 -->
+        <div class="hints">
+            <h3>实现提示</h3>
+            <p>
+                1. 时间线容器使用 <code>position: relative</code> 创建定位上下文<br>
+                2. 竖线使用 <code>.timeline::before</code>，设置 <code>position: absolute</code>、<code>left</code>、<code>top</code>、<code>height: 100%</code><br>
+                3. 圆点使用 <code>.timeline-item::before</code>，设置 <code>position: absolute</code>，通过 <code>left</code> 和 <code>top</code> 定位到竖线上<br>
+                4. 使用 <code>z-index</code> 确保圆点在竖线上方<br>
+                5. 悬停效果使用 <code>transition</code> 实现平滑动画
+            </p>
+        </div>
+    </div>
+</body>
+</html>

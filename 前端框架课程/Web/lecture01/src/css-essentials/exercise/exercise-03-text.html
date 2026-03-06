@@ -1,0 +1,77 @@
+<!-- 练习3：文字样式（页面美化的基础） -->
+<!-- 20/80原则：字体、颜色、行高、对齐这四个属性覆盖了80%的文字样式需求 -->
+<!--
+要求：
+1. 使用font-family设置字体（系统字体栈）
+2. 使用font-size设置字号（px/rem/em）
+3. 使用font-weight设置字重（normal/bold/数值）
+4. 使用color设置文字颜色（十六进制/rgb/颜色名）
+5. 使用line-height设置行高（无单位数值推荐）
+6. 使用text-align设置对齐方式
+7. 使用text-decoration设置下划线/删除线
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字样式练习</title>
+    <style>
+        /* 任务1：设置body的基础文字样式
+             font-family: 系统字体栈
+             font-size: 16px
+             line-height: 1.6
+             color: #333
+        */
+
+
+        /* 任务2：设置h1样式
+             font-size: 32px
+             font-weight: bold
+             color: #2c3e50
+             text-align: center
+        */
+
+
+        /* 任务3：设置.article-title样式
+             font-size: 24px
+             color: #3498db
+        */
+
+
+        /* 任务4：设置.meta样式（元信息）
+             font-size: 14px
+             color: #888
+        */
+
+
+        /* 任务5：设置.highlight样式
+             background-color: #fff3cd
+             font-weight: bold
+        */
+
+
+        /* 任务6：设置.link样式
+             color: #e74c3c
+             text-decoration: none（去掉下划线）
+             悬停时显示下划线
+        */
+
+    </style>
+</head>
+<body>
+    <h1>博客文章标题</h1>
+
+    <article>
+        <h2 class="article-title">学习CSS文字样式</h2>
+        <p class="meta">发布于 2024年1月15日 | 作者：张三</p>
+
+        <p>文字是网页内容的主要载体。<span class="highlight">良好的文字样式</span>可以提升阅读体验。</p>
+
+        <p>CSS提供了丰富的文字样式属性，包括字体、大小、颜色、行高等。</p>
+
+        <p>了解更多：<a href="#" class="link">CSS文字样式指南</a></p>
+    </article>
+</body>
+</html>

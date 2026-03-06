@@ -1,0 +1,56 @@
+<!-- 练习1：CSS选择器（最基础最核心的技能） -->
+<!-- 20/80原则：元素、类、ID、后代选择器覆盖了80%的选择场景 -->
+<!--
+要求：
+1. 使用元素选择器设置所有p标签样式
+2. 使用类选择器（.class）设置特定元素样式
+3. 使用ID选择器（#id）设置唯一元素样式
+4. 使用后代选择器（parent child）设置嵌套元素样式
+5. 使用分组选择器（,）合并相同样式
+6. 使用:hover伪类添加悬停效果
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择器练习</title>
+    <style>
+        /* 任务1：使用元素选择器，设置所有p标签文字颜色为#333，行高1.6 */
+
+
+        /* 任务2：使用类选择器.highlight，设置背景色#fff3cd，内边距10px */
+
+
+        /* 任务3：使用ID选择器#title，设置字体大小32px，颜色#2c3e50 */
+
+
+        /* 任务4：使用后代选择器 .content p，设置文字缩进2em */
+
+
+        /* 任务5：使用分组选择器，同时设置h1, h2, h3的字体为'Microsoft YaHei' */
+
+
+        /* 任务6：使用:hover，设置a标签悬停时颜色变为#e74c3c */
+
+    </style>
+</head>
+<body>
+    <h1 id="title">CSS选择器基础</h1>
+
+    <div class="intro">
+        <p>选择器是CSS的核心，用于选中页面中的元素。</p>
+    </div>
+
+    <div class="content">
+        <h2>基础选择器</h2>
+        <p>元素选择器选中所有指定标签。</p>
+        <p class="highlight">类选择器选中带有指定class的元素。</p>
+
+        <h2>组合选择器</h2>
+        <p>后代选择器可以选中嵌套在指定元素内的元素。</p>
+        <p>了解更多：<a href="#">CSS选择器参考</a></p>
+    </div>
+</body>
+</html>

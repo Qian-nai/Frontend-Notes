@@ -1,0 +1,96 @@
+<!-- 练习3答案：列表 -->
+<!-- 核心知识点：
+  1. <ul> - 无序列表（Unordered List），用于无顺序关系的项目
+       - 默认显示为圆点符号
+       - 适合：导航菜单、功能列表、特性说明
+
+  2. <ol> - 有序列表（Ordered List），用于有顺序关系的项目
+       - 默认显示为数字编号
+       - 适合：步骤说明、排行榜、目录
+       - 属性：type（编号类型）、start（起始编号）
+
+  3. <li> - 列表项（List Item），必须作为ul或ol的直接子元素
+       - 可以包含任何HTML元素（文本、链接、图片、甚至其他列表）
+
+  4. 嵌套列表 - 在li中放置另一个ul/ol
+       - 用于展示层级关系
+       - 浏览器会自动调整缩进
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表练习</title>
+    <style>
+        body { font-family: 'Microsoft YaHei', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
+        /* 美化列表样式 */
+        ul { margin-bottom: 20px; }
+        li { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+
+    <h1>课程大纲</h1>
+
+    <!-- 无序列表：无顺序关系的内容 -->
+    <h2>前端开发核心技术</h2>
+    <ul>
+        <li>HTML - 网页结构</li>
+        <li>CSS - 网页样式</li>
+        <li>JavaScript - 网页交互</li>
+    </ul>
+
+    <!-- 有序列表：有步骤顺序的内容 -->
+    <h2>学习步骤</h2>
+    <ol>
+        <li>学习HTML基础标签和文档结构</li>
+        <li>掌握CSS选择器和常用样式属性</li>
+        <li>理解JavaScript基本语法和DOM操作</li>
+    </ol>
+
+    <!-- 嵌套列表：层级关系 -->
+    <h2>前端技术栈</h2>
+    <ul>
+        <li>
+            前端框架
+            <!-- 嵌套的ul -->
+            <ul>
+                <li>Vue.js - 渐进式框架</li>
+                <li>React - 组件化库</li>
+                <li>Angular - 全功能框架</li>
+            </ul>
+        </li>
+        <li>
+            构建工具
+            <ul>
+                <li>Vite</li>
+                <li>Webpack</li>
+                <li>Parcel</li>
+            </ul>
+        </li>
+    </ul>
+
+    <!-- 包含复杂内容的列表 -->
+    <h2>本周学习计划</h2>
+    <ul>
+        <li>
+            <strong>周一：HTML基础</strong>
+            <br>
+            <small>学习文档结构、常用标签、语义化</small>
+        </li>
+        <li>
+            <strong>周二：CSS基础</strong>
+            <br>
+            <small>学习选择器、盒模型、文字样式</small>
+        </li>
+        <li>
+            <strong>周三：实战练习</strong>
+            <br>
+            <small>完成一个静态页面制作</small>
+        </li>
+    </ul>
+
+</body>
+</html>

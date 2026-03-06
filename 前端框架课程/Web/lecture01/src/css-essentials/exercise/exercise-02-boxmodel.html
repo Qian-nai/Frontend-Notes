@@ -1,0 +1,63 @@
+<!-- 练习2：盒模型（CSS布局的基石） -->
+<!-- 20/80原则：理解盒模型是掌握CSS布局的前提，80%的布局问题源于对盒模型的误解 -->
+<!--
+要求：
+1. 理解content、padding、border、margin四个部分
+2. 使用box-sizing: border-box简化计算
+3. 设置元素的width、height、padding、border、margin
+4. 使用margin: 0 auto实现水平居中
+5. 理解外边距折叠（margin collapsing）
+6. 使用padding增加内边距，使用margin增加外边距
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒模型练习</title>
+    <style>
+        /* 任务1：全局重置，设置所有元素的box-sizing为border-box */
+
+
+        /* 任务2：设置.box1
+             width: 300px
+             height: 200px
+             背景色: #3498db
+             内边距: 20px
+             边框: 5px solid #2c3e50
+             外边距: 20px
+        */
+
+
+        /* 任务3：设置.box2
+             与.box1相同尺寸
+             但不设置box-sizing
+             观察两者的区别
+        */
+
+
+        /* 任务4：使用margin: 0 auto让.container水平居中
+             设置max-width: 800px
+        */
+        .container {
+            background: #ecf0f1;
+            padding: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Box 1 (box-sizing: border-box)</h2>
+        <div class="box1">
+            内容区域。设置了border-box后，width/height包含padding和border。
+        </div>
+
+        <h2>Box 2 (默认content-box)</h2>
+        <div class="box2">
+            内容区域。默认情况下，width/height只包含内容，padding和border会额外增加尺寸。
+        </div>
+    </div>
+</body>
+</html>

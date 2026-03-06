@@ -1,0 +1,404 @@
+<!-- 练习3答案：模块样式与响应式（10分钟） -->
+<!-- 知识点： -->
+<!-- - Flexbox布局：display: flex, justify-content, align-items, gap -->
+<!-- - 圆形头像：border-radius: 50% -->
+<!-- - 边框装饰：border-left 实现左边框高亮 -->
+<!-- - 响应式设计：@media查询和断点 -->
+<!-- - 过渡动画：transition实现平滑效果 -->
+<!-- - 打印样式：@media print优化打印效果 -->
+<!-- - 伪元素：::before/::after创建装饰性元素 -->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李明 - 前端开发工程师</title>
+    <style>
+        /* ===== 基础重置 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* ===== 简历容器 ===== */
+        .resume-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            /* 多层阴影增加层次感 */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            /* 圆角 */
+            border-radius: 8px;
+            /* 防止圆角被内容覆盖 */
+            overflow: hidden;
+        }
+
+        /* ===== 头部Flexbox布局 ===== */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            /* Flexbox布局 */
+            display: flex;
+            /* 垂直居中对齐 */
+            align-items: center;
+            /* 两端对齐 */
+            justify-content: flex-start;
+            /* 元素间距 */
+            gap: 30px;
+        }
+
+        /* 头像样式 */
+        .avatar {
+            /* 固定尺寸 */
+            width: 100px;
+            height: 100px;
+            /* 圆形：50%圆角 */
+            border-radius: 50%;
+            /* 防止图片变形 */
+            object-fit: cover;
+            /* 白色边框 */
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            /* 防止头像被压缩 */
+            flex-shrink: 0;
+        }
+
+        /* 头像占位符（无图片时使用） */
+        .avatar-placeholder {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            flex-shrink: 0;
+        }
+
+        /* 头部右侧信息 */
+        .header-info {
+            /* 占据剩余空间 */
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+        }
+
+        .title {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        /* ===== 联系方式Flexbox布局 ===== */
+        .contact {
+            display: flex;
+            /* 允许换行 */
+            flex-wrap: wrap;
+            /* 行列间距 */
+            gap: 12px 20px;
+        }
+
+        .contact a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            /* 悬停过渡效果 */
+            transition: opacity 0.3s ease;
+        }
+
+        .contact a:hover {
+            opacity: 0.7;
+            text-decoration: underline;
+        }
+
+        /* ===== Section样式 ===== */
+        section {
+            padding: 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        /* 左边框装饰标题 */
+        section h2 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 20px;
+            /* 左边框装饰 */
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+        }
+
+        h3 {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 8px;
+            margin-top: 20px;
+        }
+
+        /* 时间样式 */
+        time {
+            color: #667eea;
+            font-size: 14px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* 列表样式 */
+        ul, ol {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        strong {
+            color: #333;
+        }
+
+        /* 项目卡片效果 */
+        article {
+            /* 过渡动画 */
+            transition: transform 0.3s ease, background 0.3s ease;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        /* 悬停时轻微移动 */
+        article:hover {
+            background: #f8f9fa;
+            transform: translateX(5px);
+        }
+
+        /* ===== 技能标签样式（拓展） ===== */
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .skill-tag {
+            background: #e3f2fd;
+            color: #667eea;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            /* 过渡效果 */
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: #667eea;
+            color: white;
+            /* 鼠标变为手型 */
+            cursor: default;
+        }
+
+        /* ===== 响应式设计 ===== */
+        /* 平板端（768px - 1023px） */
+        @media screen and (max-width: 1023px) {
+            .resume-container {
+                margin: 0 20px;
+            }
+        }
+
+        /* 手机端（小于768px） */
+        @media screen and (max-width: 767px) {
+            /* 头部垂直排列 */
+            header {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+            }
+
+            /* 头像更大 */
+            .avatar,
+            .avatar-placeholder {
+                width: 80px;
+                height: 80px;
+            }
+
+            /* 联系方式居中 */
+            .contact {
+                justify-content: center;
+            }
+
+            /* 标题字号缩小 */
+            h1 {
+                font-size: 24px;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            section h2 {
+                font-size: 18px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+
+            /* 悬停效果在移动端禁用（提升性能） */
+            article:hover {
+                transform: none;
+            }
+        }
+
+        /* ===== 打印样式 ===== */
+        @media print {
+            /* 去除背景色，节省墨水 */
+            body {
+                background: white;
+            }
+
+            .resume-container {
+                box-shadow: none;
+                margin: 0;
+                max-width: 100%;
+            }
+
+            /* 确保背景色和文字颜色被打印 */
+            header {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            /* 去除悬停效果 */
+            article:hover {
+                transform: none;
+                background: transparent;
+            }
+
+            /* 确保链接显示URL */
+            .contact a::after {
+                content: " (" attr(href) ")";
+                font-size: 12px;
+                opacity: 0.7;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <header>
+            <!-- 头像占位符，实际使用时替换为 img 标签 -->
+            <div class="avatar-placeholder">👨‍💻</div>
+            <div class="header-info">
+                <h1>李明</h1>
+                <p class="title">前端开发工程师</p>
+                <nav class="contact">
+                    <a href="tel:13812345678">📱 138-1234-5678</a>
+                    <a href="mailto:liming@example.com">✉️ liming@example.com</a>
+                    <a href="https://github.com/liming-dev" target="_blank">🐙 github.com/liming-dev</a>
+                    <a href="https://liming.dev" target="_blank">🌐 liming.dev</a>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <section class="summary">
+                <h2>个人简介</h2>
+                <p>3年前端开发经验，精通Vue.js生态和现代化前端工程化工具。具备良好的代码规范和组件设计能力，熟悉从需求分析到部署上线的完整开发流程。热衷于性能优化和用户体验提升，拥有多个完整项目开发经验。善于团队协作，具备良好的沟通能力和技术文档编写能力。</p>
+            </section>
+
+            <section class="education">
+                <h2>教育背景</h2>
+                <article>
+                    <h3>某某科技大学 | 计算机科学与技术 | 本科</h3>
+                    <time datetime="2019-09-01/2023-06-30">2019.09 - 2023.06</time>
+                    <ul>
+                        <li>GPA: 3.6/4.0，专业排名前15%</li>
+                        <li>主修课程：数据结构与算法、软件工程、Web开发技术、数据库原理、计算机网络</li>
+                        <li>获奖经历：国家励志奖学金（2021）、校级优秀毕业生、程序设计竞赛二等奖</li>
+                    </ul>
+                </article>
+            </section>
+
+            <section class="skills">
+                <h2>专业技能</h2>
+                <article>
+                    <h3>前端技术</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Vue 3</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">HTML5/CSS3</span>
+                        <span class="skill-tag">Element Plus</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                        <span class="skill-tag">Vite</span>
+                    </div>
+                </article>
+                <article>
+                    <h3>其他技能</h3>
+                    <ul>
+                        <li><strong>后端基础</strong>：Node.js、Express、RESTful API设计</li>
+                        <li><strong>数据库</strong>：MySQL基础、MongoDB基础</li>
+                        <li><strong>部署运维</strong>：Linux基础、Nginx配置、Docker入门</li>
+                    </ul>
+                </article>
+            </section>
+
+            <section class="projects">
+                <h2>项目经历</h2>
+                <article>
+                    <h3>企业级后台管理系统 | 前端负责人</h3>
+                    <time datetime="2023-03-01/2023-06-30">2023.03 - 2023.06</time>
+                    <ul>
+                        <li>负责系统整体架构设计，搭建基于Vite的现代化开发环境</li>
+                        <li>实现RBAC权限管理系统，支持动态路由和按钮级权限控制</li>
+                        <li>封装15+通用业务组件，提升开发效率40%</li>
+                        <li>优化首屏加载速度，Lighthouse性能评分从65提升至92</li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>电商小程序商城 | 核心开发</h3>
+                    <time datetime="2022-09-01/2022-12-31">2022.09 - 2022.12</time>
+                    <ul>
+                        <li>参与商品展示、购物车、订单流程等核心模块开发</li>
+                        <li>实现微信支付和支付宝支付的双渠道接入</li>
+                        <li>设计并实现图片懒加载和虚拟列表，解决长列表性能问题</li>
+                    </ul>
+                </article>
+            </section>
+
+            <section class="evaluation">
+                <h2>自我评价</h2>
+                <ol>
+                    <li><strong>技术热情</strong>：持续关注前端新技术，定期输出技术博客，参与开源项目贡献</li>
+                    <li><strong>解决问题</strong>：善于使用Chrome DevTools进行调试，能快速定位和解决复杂问题</li>
+                    <li><strong>代码质量</strong>：注重代码规范和可维护性，熟悉ESLint、Prettier等代码检查工具</li>
+                </ol>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

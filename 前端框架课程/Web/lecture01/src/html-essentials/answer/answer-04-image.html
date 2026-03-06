@@ -1,0 +1,84 @@
+<!-- 练习4答案：图片与媒体 -->
+<!-- 核心知识点：
+  1. <img> - 图片标签，单标签
+       - src：图片地址（必填）
+       - alt：替代文本（SEO+无障碍，必填）
+       - width/height：尺寸（建议设置，防止布局抖动）
+       - loading="lazy"：懒加载，提升性能
+
+  2. <figure> - 独立的图片/图表区域
+       - 可以包含img、代码块、图表等
+
+  3. <figcaption> - figure的标题/说明
+       - 必须是figure的第一个或最后一个子元素
+
+  4. 图片链接 - 用<a>包裹<img>
+       - 常见于商品图、相册等
+
+  5. 响应式图片：
+       - srcset属性：根据不同屏幕密度提供不同尺寸
+       - <picture>元素：根据不同条件选择不同图片
+       - sizes属性：告诉浏览器图片的显示尺寸
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片练习</title>
+    <style>
+        body { font-family: 'Microsoft YaHei', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
+        img { max-width: 100%; height: auto; border-radius: 8px; }
+        figure { margin: 20px 0; text-align: center; }
+        figcaption { color: #666; font-size: 14px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <h1>我的相册</h1>
+
+    <!-- 基础img标签 -->
+    <h2>单张图片</h2>
+    <img src="https://picsum.photos/400/300?random=1"
+         alt="示例图片1"
+         width="400"
+         height="300"
+         loading="lazy">
+
+    <!-- figure和figcaption -->
+    <h2>带标题的图片</h2>
+    <figure>
+        <img src="https://picsum.photos/400/300?random=2"
+             alt="美丽的风景"
+             width="400"
+             height="300">
+        <figcaption>美丽的风景</figcaption>
+    </figure>
+
+    <!-- 图片链接 -->
+    <h2>点击图片查看详情</h2>
+    <a href="https://example.com" target="_blank">
+        <img src="https://picsum.photos/200/200?random=3"
+             alt="点击查看更多"
+             width="200"
+             height="200">
+    </a>
+
+    <!-- 响应式图片示例 -->
+    <h2>响应式图片</h2>
+    <img src="https://picsum.photos/800/400?random=4"
+         alt="响应式图片示例"
+         srcset="https://picsum.photos/400/200?random=4 400w,
+                 https://picsum.photos/800/400?random=4 800w"
+         sizes="(max-width: 600px) 100vw, 800px">
+
+    <!-- SVG内联示例 -->
+    <h2>SVG图标</h2>
+    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#3498db" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M12 6v6l4 2"></path>
+    </svg>
+
+</body>
+</html>

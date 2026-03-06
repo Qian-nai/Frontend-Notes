@@ -1,0 +1,88 @@
+<!-- 练习1：HTML语义化结构（10分钟） -->
+<!-- 目标：使用正确的HTML5语义化标签构建简历结构，不添加CSS -->
+<!-- 要求： -->
+<!-- 1. 使用 header 包裹头部信息（姓名、职位、联系方式） -->
+<!-- 2. 使用 main 包裹主要内容区 -->
+<!-- 3. 使用 section 划分各个模块（个人简介、教育背景、专业技能、项目经历、自我评价） -->
+<!-- 4. 使用 h1-h3 建立正确的标题层级 -->
+<!-- 5. 使用 ul/li 展示列表内容（获奖经历、技能、项目职责等） -->
+<!-- 6. 使用 nav 包裹联系方式链接 -->
+<!-- 7. 使用 time 标签标注时间 -->
+<!-- 8. 使用 article 包裹独立的项目经历 -->
+<!-- 9. 使用 footer 作为页面底部（可选） -->
+<!-- 10. 所有图片添加 alt 属性，所有链接使用正确的 href -->
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>李明 - 前端开发工程师</title>
+  </head>
+  <body>
+    <!-- 任务1：使用语义化标签重写以下内容 -->
+    <!-- 提示：header > h1 + p + nav > a -->
+    <header>
+      <h1>李明</h1>
+      <p>前端开发工程师</p>
+      <nav>
+        <a href="tel:13812345678">138-1234-5678</a>
+        <a href="mailto:liming@example.com">liming@example.com</a>
+        <a href="https://github.com/liming-dev" target="_blank"
+          >github.com/liming-dev</a
+        >
+        <a href="https://liming.dev" target="_blank">liming.dev</a>
+      </nav>
+    </header>
+
+    <!-- 任务2：使用 main 包裹以下内容 -->
+    <main>
+      <!-- 任务3：使用 section + h2 重构个人简介 -->
+      <section>
+        <h2>个人简介</h2>
+        <p>3年前端开发经验，精通Vue.js生态和现代化前端工程化工具...</p>
+      </section>
+
+      <!-- 任务4：使用 section + h2 + article/time 重构教育背景 -->
+      <section>
+        <h2>教育背景</h2>
+        <article>
+          <h3>某某科技大学 | 计算机科学与技术 | 本科</h3>
+          <time>2019.09 - 2023.06</time>
+          <div>GPA: 3.6/4.0，专业排名前15%</div>
+          <div>
+            获奖经历：国家励志奖学金（2021）、校级优秀毕业生、程序设计竞赛二等奖
+          </div>
+        </article>
+      </section>
+
+      <!-- 任务5：使用 section + h2 + ul 重构专业技能 -->
+      <section>
+        <h2>专业技能</h2>
+        <ul>
+          <li>前端技术：Vue 3、HTML5、CSS3、JavaScript、TypeScript</li>
+          <li>其他技能：Node.js、MySQL、Docker</li>
+        </ul>
+      </section>
+
+      <!-- 任务6：使用 section + h2 + article 重构项目经历 -->
+      <section>
+        <h2>项目经历</h2>
+        <article>
+          <h3>企业级后台管理系统 | 前端负责人</h3>
+          <time>2023.03 - 2023.06</time>
+          <p>负责系统整体架构设计...</p>
+        </article>
+      </section>
+
+      <!-- 任务7：使用 section + h2 + ol/ul 重构自我评价 -->
+      <section>
+        <h2>自我评价</h2>
+        <ul>
+          <li>技术热情：持续关注前端新技术...</li>
+          <li>解决问题：善于使用Chrome DevTools...</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

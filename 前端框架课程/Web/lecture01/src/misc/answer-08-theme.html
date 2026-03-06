@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS变量与主题切换 - 完整示例</title>
+    <!--
+        ========================================
+        完整答案：CSS自定义属性（CSS变量）实现主题切换
+        ========================================
+
+        本示例展示了：
+        1. 使用 :root 定义默认（亮色）主题的CSS变量
+        2. 使用 [data-theme="dark"] 定义暗色主题的CSS变量
+        3. 使用 var() 函数在样式中引用这些变量
+        4. 使用 JavaScript 切换 data-theme 属性实现主题切换
+        5. 使用 localStorage 保存和恢复用户的主题偏好
+    -->
+    <style>
+        /* ========================================
+           第一步：定义默认（亮色）主题的CSS变量
+           ========================================
+           :root 伪类匹配文档树的根元素（HTML元素）
+           在这里定义的变量是全局可用的
+        */
+        :root {
+            /* 页面背景色 */
+            --bg-color: #f5f5f5;
+            /* 主要文字颜色 */
+            --text-color: #333333;
+            /* 头部背景色 */
+            --header-bg: #4a90e2;
+            /* 头部文字颜色 */
+            --header-text: #ffffff;
+            /* 区块背景色 */
+            --section-bg: #ffffff;
+            /* 边框颜色 */
+            --border-color: #e0e0e0;
+            /* 强调色（用于链接、按钮等） */
+            --accent-color: #4a90e2;
+            /* 时间线圆点颜色 */
+            --timeline-dot: #4a90e2;
+            /* 时间线轨道颜色 */
+            --timeline-track: #e0e0e0;
+            /* 技能标签背景色 */
+            --skill-bg: #e3f2fd;
+            /* 技能标签文字色 */
+            --skill-text: #1976d2;
+            /* 次要文字颜色（时间、描述等） */
+            --secondary-text: #666666;
+            /* 段落文字颜色 */
+            --paragraph-text: #555555;
+            /* 区块标题颜色 */
+            --heading-color: #4a90e2;
+            /* 按钮背景色 */
+            --button-bg: #4a90e2;
+            /* 按钮文字色 */
+            --button-text: #ffffff;
+            /* 阴影颜色 */
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* ========================================
+           第二步：定义暗色主题的CSS变量
+           ========================================
+           当 HTML 元素有 data-theme="dark" 属性时，
+           这些变量会覆盖 :root 中定义的同名变量
+        */
+        [data-theme="dark"] {
+            /* 页面背景色 - 深灰色 */
+            --bg-color: #1a1a2e;
+            /* 主要文字颜色 - 浅灰色 */
+            --text-color: #e0e0e0;
+            /* 头部背景色 - 深蓝色 */
+            --header-bg: #16213e;
+            /* 头部文字颜色 */
+            --header-text: #e0e0e0;
+            /* 区块背景色 - 稍浅的深色 */
+            --section-bg: #16213e;
+            /* 边框颜色 - 深色边框 */
+            --border-color: #2d3748;
+            /* 强调色 - 亮蓝色 */
+            --accent-color: #63b3ed;
+            /* 时间线圆点颜色 */
+            --timeline-dot: #63b3ed;
+            /* 时间线轨道颜色 */
+            --timeline-track: #2d3748;
+            /* 技能标签背景色 */
+            --skill-bg: #2d3748;
+            /* 技能标签文字色 */
+            --skill-text: #63b3ed;
+            /* 次要文字颜色 */
+            --secondary-text: #a0aec0;
+            /* 段落文字颜色 */
+            --paragraph-text: #cbd5e0;
+            /* 区块标题颜色 */
+            --heading-color: #63b3ed;
+            /* 按钮背景色 */
+            --button-bg: #63b3ed;
+            /* 按钮文字色 */
+            --button-text: #1a1a2e;
+            /* 阴影颜色 - 更深的阴影 */
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+
+        /* ========================================
+           第三步：使用CSS变量定义样式
+           ========================================
+           使用 var() 函数引用变量
+           语法：var(--变量名, 默认值)
+           当变量未定义时，会使用默认值
+        */
+
+        /* 重置样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 页面主体样式 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            /* 使用 var() 函数引用CSS变量 */
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            /* 添加过渡效果，使主题切换更平滑 */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* ========================================
+           主题切换按钮样式
+           ========================================
+           固定在页面右上角
+        */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            /* 使用CSS变量 */
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            /* 添加过渡效果 */
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s, box-shadow 0.2s;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+
+        .theme-toggle .icon {
+            font-size: 16px;
+        }
+
+        /* ========================================
+           头部区域样式
+           ========================================
+        */
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 60px 20px;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        /* ========================================
+           主内容区样式
+           ========================================
+        */
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* ========================================
+           内容区块样式
+           ========================================
+        */
+        section {
+            background-color: var(--section-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        section:hover {
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+
+        section h2 {
+            color: var(--heading-color);
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        section p {
+            color: var(--paragraph-text);
+            transition: color 0.3s ease;
+        }
+
+        /* ========================================
+           技能列表样式
+           ========================================
+        */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+        }
+
+        .skills-list li {
+            background-color: var(--skill-bg);
+            color: var(--skill-text);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* ========================================
+           时间线样式
+           ========================================
+        */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        /* 时间线轨道 */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--timeline-track);
+            transition: background-color 0.3s ease;
+        }
+
+        /* 时间线项目 */
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 时间线圆点 */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--timeline-dot);
+            border: 2px solid var(--section-bg);
+            box-shadow: 0 0 0 2px var(--timeline-dot);
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .timeline-item .time {
+            font-size: 0.85em;
+            color: var(--secondary-text);
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .timeline-item p {
+            color: var(--paragraph-text);
+            transition: color 0.3s ease;
+        }
+
+        /* ========================================
+           联系链接样式
+           ========================================
+        */
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* ========================================
+           页脚样式
+           ========================================
+        */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--secondary-text);
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        /* ========================================
+           响应式设计
+           ========================================
+        */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            .theme-toggle {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!--
+        ========================================
+        主题切换按钮
+        ========================================
+        点击此按钮调用 toggleTheme() 函数切换主题
+        图标说明：
+        - 🌙 表示当前是亮色主题，点击切换到暗色主题
+        - ☀️ 表示当前是暗色主题，点击切换到亮色主题
+    -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <span class="icon" id="theme-icon">🌙</span>
+        <span id="theme-text">切换主题</span>
+    </button>
+
+    <!--
+        ========================================
+        头部区域：展示姓名和职位
+        ========================================
+    -->
+    <header>
+        <h1>张三</h1>
+        <p>前端开发工程师 | 5年经验</p>
+    </header>
+
+    <!--
+        ========================================
+        主内容区：包含多个内容区块
+        ========================================
+    -->
+    <main>
+        <!-- 个人简介区块 -->
+        <section>
+            <h2>个人简介</h2>
+            <p>热爱前端开发，专注于用户体验和性能优化。熟练掌握 Vue.js、React 等主流框架，有丰富的移动端和PC端开发经验。善于团队协作，追求代码质量和工程化实践。</p>
+        </section>
+
+        <!-- 技能区块 -->
+        <section>
+            <h2>专业技能</h2>
+            <ul class="skills-list">
+                <li>HTML5 / CSS3</li>
+                <li>JavaScript / ES6+</li>
+                <li>Vue.js / Vuex</li>
+                <li>React / Redux</li>
+                <li>Webpack / Vite</li>
+                <li>Node.js</li>
+                <li>Git / CI/CD</li>
+                <li>响应式设计</li>
+            </ul>
+        </section>
+
+        <!-- 工作经历区块：使用时间线布局 -->
+        <section>
+            <h2>工作经历</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>高级前端开发工程师 - 某科技有限公司</h3>
+                    <div class="time">2021年6月 - 至今</div>
+                    <p>负责公司核心产品的前端架构设计和开发，带领5人团队完成多个重要项目。优化页面性能，首屏加载时间减少50%。</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>前端开发工程师 - 某互联网公司</h3>
+                    <div class="time">2019年3月 - 2021年5月</div>
+                    <p>参与电商平台的前端开发，负责商品详情页和购物车模块。使用 Vue.js 重构旧项目，提升代码可维护性。</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>初级前端开发 - 某软件公司</h3>
+                    <div class="time">2018年7月 - 2019年2月</div>
+                    <p>参与企业官网和管理后台的开发，学习并掌握了 HTML、CSS、JavaScript 等前端基础技术。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系方式区块 -->
+        <section>
+            <h2>联系方式</h2>
+            <div class="contact-links">
+                <a href="mailto:zhangsan@example.com">📧 zhangsan@example.com</a>
+                <a href="tel:13800138000">📱 138-0013-8000</a>
+                <a href="#">💼 github.com/zhangsan</a>
+                <a href="#">🌐 zhangsan.dev</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2024 张三. 保留所有权利。</p>
+    </footer>
+
+    <script>
+        /*
+            ========================================
+            JavaScript 主题切换功能
+            ========================================
+        */
+
+        /**
+         * 切换主题函数
+         * 功能：
+         * 1. 检查当前主题（通过 document.documentElement 的 data-theme 属性）
+         * 2. 切换到另一个主题（light <-> dark）
+         * 3. 更新按钮图标
+         * 4. 保存主题偏好到 localStorage
+         */
+        function toggleTheme() {
+            // 获取当前主题
+            // document.documentElement 指向 HTML 根元素
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+
+            // 判断当前主题并切换到另一个主题
+            // 如果当前是暗色主题或未设置，则切换到亮色；否则切换到暗色
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            // 设置新主题
+            // 这会触发 CSS 中 [data-theme="dark"] 或默认 :root 的变量定义
+            document.documentElement.setAttribute('data-theme', newTheme);
+
+            // 更新按钮图标和文字
+            updateThemeButton(newTheme);
+
+            // 保存主题偏好到 localStorage
+            // localStorage 是浏览器提供的本地存储，数据会持久保存
+            localStorage.setItem('theme', newTheme);
+
+            // 在控制台输出当前主题（调试用）
+            console.log('主题已切换到:', newTheme);
+        }
+
+        /**
+         * 更新主题按钮的图标和文字
+         * @param {string} theme - 当前主题 ('light' 或 'dark')
+         */
+        function updateThemeButton(theme) {
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+
+            if (theme === 'dark') {
+                // 当前是暗色主题，显示太阳图标表示可以切换到亮色
+                icon.textContent = '☀️';
+                text.textContent = '亮色模式';
+            } else {
+                // 当前是亮色主题，显示月亮图标表示可以切换到暗色
+                icon.textContent = '🌙';
+                text.textContent = '暗色模式';
+            }
+        }
+
+        /**
+         * 初始化主题
+         * 页面加载时调用，恢复用户之前保存的主题偏好
+         */
+        function initTheme() {
+            // 从 localStorage 获取保存的主题
+            const savedTheme = localStorage.getItem('theme');
+
+            if (savedTheme) {
+                // 如果有保存的主题，应用它
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                updateThemeButton(savedTheme);
+                console.log('已恢复保存的主题:', savedTheme);
+            } else {
+                // 如果没有保存的主题，检查系统偏好
+                // window.matchMedia 可以检测系统的深色模式偏好
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+                if (prefersDark) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    updateThemeButton('dark');
+                    console.log('已应用系统暗色主题偏好');
+                } else {
+                    // 默认使用亮色主题
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    updateThemeButton('light');
+                    console.log('已应用默认亮色主题');
+                }
+            }
+        }
+
+        // 页面加载完成后初始化主题
+        // DOMContentLoaded 事件在 HTML 文档被完全加载和解析后触发
+        document.addEventListener('DOMContentLoaded', initTheme);
+
+        // 监听系统主题变化（可选功能）
+        // 当用户在系统设置中切换深色/亮色模式时，自动更新主题
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            // 只有当用户没有手动设置过主题时，才跟随系统
+            if (!localStorage.getItem('theme')) {
+                const newTheme = e.matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                updateThemeButton(newTheme);
+                console.log('跟随系统主题变化:', newTheme);
+            }
+        });
+    </script>
+</body>
+</html>
