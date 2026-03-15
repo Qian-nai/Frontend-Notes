@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ title }}</p>
+      <p>{{ content }}</p>
+      <p>{{1+2+3}}</p>
+      <p>{{1>2?'对':'错'}}</p>
+      <p>{{output()}}</p>
+      <p>{{output()}}</p>
+      <p>{{output()}}</p>
+      <p>{{outputComputed}}</p>
+      <p>{{outputComputed}}</p>
+      <p>{{outputComputed}}</p>
+
+      <!-- 指令 -->
+      <p v-text="htmlcontent"></p>
+      <p v-html="htmlcontent"></p>
+      <p v-if="true">这个段落显示或隐藏</p>
+      <p v-if="false">这个段落会在条件不满足时显示(直接销毁)</p>
+      <p v-show="true">这个段落会根据v-show的值显示或隐藏</p>
+      <p v-for="item in items" :key="item.id">{{ item.name }}</p>
+
+      <p v-bind:title="title">这个段落有绑定的属性</p>
+      <p :title="title">这个段落有绑定的属性</p>
+
+      <button v-on:click="output">点击我</button>
+      <button @click="output">点击我</button>
+      <!-- 双向绑定 -->
+      <input type="text" v-model="inputValue" />
+
+      <input type="text" v-model.trim="inputValue" />
+    </div>
+
+    <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        // 1. 响应式数据与插值表达式
+        el: "#app",
+        data() {
+          return {
+            title: "这是标题文本",
+            content: "这是内容文本",
+            htmlcontent: "<h1>这是HTML内容</h1>",
+            items: [
+              { id: 1, name: "苹果" },
+              { id: 2, name: "香蕉" },
+              { id: 3, name: "橘子" },
+            ],
+            inputValue: "这是输入框的初始值",
+          };
+        },
+
+        // 2. methods：方法（模板里用 output() 调用）
+        methods: {
+          output() {
+            console.log("这是一个方法");
+            return "这是一个方法" + this.title;
+          },
+        },
+
+        // 3. computed：计算属性（模板里用 outputComputed 访问，不加括号）
+        computed: {
+          outputComputed() {
+            console.log("这是一个计算属性");
+            return "这是一个计算属性" + this.title;
+          },
+        },
+
+        // 4. watch：监听属性
+        watch: {
+          title(newVal, oldVal) {
+            console.log("监听到title发生了变化", newVal, oldVal);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
