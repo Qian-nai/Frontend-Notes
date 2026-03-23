@@ -1,0 +1,19 @@
+{
+  "registrations": [
+    { "id": 1, "name": "张小明", "age": 8, "phone": "13800138001", "school": "第一实验小学", "joinPublicClass": true, "createdAt": "2026-03-15 10:00:00" },
+    { "id": 2, "name": "李华", "age": 10, "phone": "13900139002", "school": "阳光中学", "joinPublicClass": false, "createdAt": "2026-03-15 11:30:00" },
+    { "id": 3, "name": "王诗语", "age": 6, "phone": "13700137003", "school": "春蕾幼儿园", "joinPublicClass": true, "createdAt": "2026-03-16 09:15:00" },
+    { "id": 4, "name": "赵子轩", "age": 12, "phone": "13600136004", "school": "育才外国语", "joinPublicClass": true, "createdAt": "2026-03-16 14:20:00" },
+    { "id": 5, "name": "陈梦琪", "age": 5, "phone": "13500135005", "school": "红黄蓝幼儿园", "joinPublicClass": true, "createdAt": "2026-03-17 08:30:00" },
+    { "id": 6, "name": "刘宇航", "age": 14, "phone": "15800158006", "school": "第八中学", "joinPublicClass": false, "createdAt": "2026-03-17 16:45:00" },
+    { "id": 7, "name": "林浩然", "age": 7, "phone": "15900159007", "school": "明德实验学校", "joinPublicClass": true, "createdAt": "2026-03-18 10:10:00" },
+    { "id": 8, "name": "郑佳怡", "age": 9, "phone": "15700157008", "school": "第一实验小学", "joinPublicClass": true, "createdAt": "2026-03-18 11:05:00" },
+    { "id": 9, "name": "黄子豪", "age": 11, "phone": "15000150009", "school": "朝阳二小", "joinPublicClass": false, "createdAt": "2026-03-18 15:50:00" },
+    { "id": 10, "name": "周芷若", "age": 4, "phone": "15100151010", "school": "星光幼儿园", "joinPublicClass": true, "createdAt": "2026-03-19 09:25:00" },
+    { "id": 11, "name": "吴磊", "age": 15, "phone": "15200152011", "school": "第十中学", "joinPublicClass": false, "createdAt": "2026-03-19 13:40:00" },
+    { "id": 12, "name": "徐静蕾", "age": 8, "phone": "18800188012", "school": "明德实验学校", "joinPublicClass": true, "createdAt": "2026-03-19 19:10:00" },
+    { "id": 13, "name": "孙博文", "age": 13, "phone": "18900189013", "school": "育才外国语", "joinPublicClass": true, "createdAt": "2026-03-20 08:50:00" },
+    { "id": 14, "name": "马艺轩", "age": 6, "phone": "18700187014", "school": "春蕾幼儿园", "joinPublicClass": false, "createdAt": "2026-03-20 10:20:00" },
+    { "id": 15, "name": "朱奕辰", "age": 10, "phone": "18600186015", "school": "阳光中学", "joinPublicClass": true, "createdAt": "2026-03-20 11:30:00" }
+  ]
+}
