@@ -93,7 +93,13 @@ const fetchList = async () => {
         const res = await api.get('/registrations')
         tableData.value = res.data
     } catch (error) {
-        ElMessage.error('获取数据失败')
+        // 👇 【核心精髓】：如果线上环境连不上你电脑本地的 json-server，就自动用这套假数据兜底！
+        console.warn('进入线上演示模式：使用静态模拟数据')
+        tableData.value = [
+            { id: 1, name: '张小明(线上演示)', age: 8, phone: '13800138001', school: '第一实验小学', joinPublicClass: true, createdAt: '2026-03-15 10:00:00' },
+            { id: 2, name: '李华(线上演示)', age: 10, phone: '13900139002', school: '阳光中学', joinPublicClass: false, createdAt: '2026-03-15 11:30:00' },
+            { id: 3, name: '王诗语(线上演示)', age: 6, phone: '13700137003', school: '春蕾幼儿园', joinPublicClass: true, createdAt: '2026-03-16 09:15:00' }
+        ]
     } finally {
         loading.value = false
     }
